@@ -9,8 +9,9 @@ genv.Values = {
 		}
 	}
 }
-genv.Functions = {}
+genv.Module = {}
 local Values = genv.Values
+local Module = genv.Module
 
 local JBPosition = Values.Gui.JumpButton.Position
 local JBSize = Values.Gui.JumpButton.Size
@@ -41,6 +42,8 @@ RunService.RenderStepped:Connect(function()
 	if JumpRef.Position ~= JBPosition then JumpRef.Position = JBPosition end
 	if JumpRef.Size ~= JBSize then JumpRef.Size = JBSize end
 end)
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/relojac/TimelessRPUtils/refs/heads/main/Core/Module/Positioner.lua"))()
 
 --
 
