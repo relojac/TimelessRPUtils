@@ -11,6 +11,9 @@ genv.Values = {
 }
 local Values = genv.Values
 
+local JBPosition = Values.Gui.JumpButton.Position
+local JBSize = Values.Gui.JumpButton.Size
+
 local Players = game:GetService("Players")
 local RunService = game:GetService("RunService")
 
@@ -21,13 +24,22 @@ local TouchGui = PlayerGui:WaitForChild("TouchGui")
 local TouchControlFrame = TouchGui:WaitForChild("TouchControlFrame")
 local JumpButton = TouchControlFrame:WaitForChild("JumpButton")
 
+local JumpRef = Instance.new("Frame", TouchControlFrame)
+	JumpRef.Name = "JumpButtonReference"
+	JumpRef.BackgroundTransparency = 1
+
 local function updateGui()
-	Values.Gui.JumpButton.Position = JumpButton.Position
-	Values.Gui.JumpButton.Size = JumpButton.Size
+	JBPosition = JumpButton.Position
+	JBSize = JumpButton.Size
 end
 
 JumpButton:GetPropertyChangedSignal("Position"):Connect(updateGui)
 JumpButton:GetPropertyChangedSignal("Size"):Connect(updateGui)
+
+RunService.RenderStepped:Connect(function()
+	if JumpRef.Position ~= JBPosition then JumpRef.Position = JBPosition end
+	if JumpRef.Size ~= JBSize then JumpRef.Size = JBSize end
+end)
 
 --
 
