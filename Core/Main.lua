@@ -1,6 +1,8 @@
 local genv = (getgenv and getgenv()) or shared
 local Settings = genv.Settings
 
+require(game:HttpGet("https://raw.githubusercontent.com/relojac/TimelessRPUtils/refs/heads/main/Core/Modules/Info.lua"))
+
 genv.Values = {
 	["Gui"] = {
 		["JumpButton"] = {
