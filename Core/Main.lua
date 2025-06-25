@@ -26,6 +26,9 @@ local function updateGui()
 	Values.Gui.JumpButton.Size = JumpButton.Size
 end
 
-RunService.RenderStepped:Connect(updateGui)
+JumpButton:GetPropertyChangedSignal("Position"):Connect(updateGui)
+JumpButton:GetPropertyChangedSignal("Size"):Connect(updateGui)
 
 --
+
+loadstring(game:HttpGet(""))()
