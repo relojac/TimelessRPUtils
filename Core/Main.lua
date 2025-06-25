@@ -1,11 +1,17 @@
 local Global = (getgenv and getgenv()) or shared
+local Config = Global.Config
 
 local Players = game:GetService("Players")
 local RunService = game:GetService("RunService")
 local UserInputService = game:GetService("UserInputService")
 
 local Player = Players.LocalPlayer -- Player
-local PlayerGui = Player.PlayerGui -- Gui Objects
+local StarterGui = Player.PlayerGui -- Gui Objects
+if Config.CoreGui then
+	StarterGui = game.CoreGui
+else
+	Player.PlayerGui
+end
 
 if PlayerGui:FindFirstChild("MobileButtonsLocal") then PlayerGui.MobileButtonsLocal:Destroy() end
 local MobileButtons = Instance.new("ScreenGui", PlayerGui) -- Gui object
