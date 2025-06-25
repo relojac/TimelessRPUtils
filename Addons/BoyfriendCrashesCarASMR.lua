@@ -20,9 +20,9 @@ end
 
 if getsynasset and request and writefile and isfile then
 	if not isfile("ASMR.mp4") then
-		local Response, TempFile = request({Url = "https://cdn.discordapp.com/attachments/971520525736218766/1008731543298117692/cat.webm",Method = 'GET'})
+		local Response, TempFile = request({Url = "https://github.com/relojac/TimelessRPUtils/raw/refs/heads/main/Addons/ASMR.mp4", Method = 'GET'})
 		if Response.StatusCode == 200 then
-			writefile("ASMR.mp4",Response.Body)
+			writefile("ASMR.mp4", Response.Body)
 		end
 	end
 	Video.Video = getsynasset("ASMR.mp4")
