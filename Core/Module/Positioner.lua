@@ -1,5 +1,7 @@
 local genv = (getgenv and getgenv()) or shared
 local Settings = genv.Settings
+
+genv.Module = genv.Module or {}
 local Module = genv.Module
 
 local butSp = 1.1
