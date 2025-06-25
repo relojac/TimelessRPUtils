@@ -9,6 +9,7 @@ genv.Values = {
 		}
 	}
 }
+genv.Functions = {}
 local Values = genv.Values
 
 local JBPosition = Values.Gui.JumpButton.Position
