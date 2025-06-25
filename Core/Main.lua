@@ -10,7 +10,7 @@ local StarterGui = Player.PlayerGui -- Gui Objects
 if Config.CoreGui then
 	StarterGui = game.CoreGui
 else
-	Player.PlayerGui
+	StarterGui = Player.PlayerGui
 end
 
 if PlayerGui:FindFirstChild("MobileButtonsLocal") then PlayerGui.MobileButtonsLocal:Destroy() end
