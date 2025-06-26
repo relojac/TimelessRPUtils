@@ -8,6 +8,7 @@ these are... utilities, meant to be executed in Roblox roleplaying games.
 it's somewhat cluttered, but it's flexible.
 > [!WARNING]
 > this script works best in games that don't mess with your rig
+> also execute it in a Synapse X-esque environment—like KRNL. make sure getsynasset and a workspace folder is present—it should be created automatically
 
 > [!CAUTION]
 > please don't use this script to gain an unfair advantage in actual games.
