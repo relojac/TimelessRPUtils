@@ -1,45 +1,23 @@
 local genv = (getgenv and getgenv()) or shared
 
+genv.Module = genv.Module or {}
 local Module = genv.Module
+local Settings = genv.Settings
+
+local AlwaysRedownload = Settings.AlwaysRedownloadAssets
+
 local Asset = Module.Asset
 
-genv.AllAssets = genv.AllAssets or {}
+loadstring(game:HttpGet("https://raw.githubusercontent.com/relojac/TimelessRPUtils/refs/heads/main/Core/AssetTable.lua"))()
 local AllAssets = genv.AllAssets
-local AlwaysRedownload = genv.AlwaysRedownload or false
 
-local getsynasset = getsynasset or getcustomasset or function() end
-
-AllAssets.Buttons = {
-	"Button_off.png",
-	"Button_on.png", 
-
-	"DropButton_off.png",
-	"DropButton_on.png", 
-
-	"JumpButton_off.png",
-	"JumpButton_on.png", 
-
-	"NVButton_off.png",
-	"NVButton_on.png", 
-
-	"ResetButton_off.png",
-	"ResetButton_on.png", 
-
-	"SitButton_off.png",
-	"SitButton_on.png"
-}
-AllAssets.AutoLoadedEffects = {
-	"vignette.png"
-}
-
-for _, v in ipairs(AllAssets.Buttons) do
-	if AlwaysRedownload then Asset.del(v) end
-	Asset.write("https://github.com/relojac/TimelessRPUtils/raw/refs/heads/main/Assets/Buttons/"..v, v)
-	print(getsynasset(v))
-end
-
-for _, v in ipairs(AllAssets.AutoLoadedEffects) do
-	if AlwaysRedownload then Asset.del(v) end
-	Asset.write("https://github.com/relojac/TimelessRPUtils/raw/refs/heads/main/Assets/AutoLoadedEffects/"..v, v)
-	print(getsynasset(v))
+for name, entry in ipairs(AllAssets) do
+	print("access", entry, "of AllAssets"
+	for _, v in ipairs(entry) do
+		if AlwaysRedownloadAssets then Asset.del(v) end
+		
+		print("attempt to download", v)
+		Asset.write("https://github.com/relojac/TimelessRPUtils/raw/refs/heads/main/Assets/"..name.."/"..v.."/", v)
+		print("downloaded", v, "-", getsynasset(v))
+	end
 end
