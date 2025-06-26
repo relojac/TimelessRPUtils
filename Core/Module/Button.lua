@@ -16,10 +16,12 @@ local PlayerGui = Player:WaitForChild("PlayerGui")
 local JB = Values.Gui.JumpButton
 local Reference = JB.Reference
 
+local getsynasset = getsynasset or getcustomasset or function() end
+
 
 function Button.new(name, active)
 	local b = Instance.new("ImageButton", Reference)
-		b.Name = name
+		b.Name = name or "Button"
 		b.Image = getsynasset(name.."_off.png")
 		b.PressedImage = getsynasset(name.."_on.png")
 		b.Active = active or true
