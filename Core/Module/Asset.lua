@@ -3,13 +3,7 @@ local genv = (getgenv and getgenv()) or shared
 genv.Module = genv.Module or {}
 local Module = genv.Module
 
-Module.Asset = Module.Asset or {
-	["video"] = nil,
-	["image"] = nil,
-	["audio"] = nil,
-
-	["write"] = nil
-}
+Module.Asset = Module.Asset or {}
 local Asset = Module.Asset
 
 local getsynasset = getsynasset or getcustomasset or function() end 
@@ -17,7 +11,7 @@ local request = syn and syn.request or http and http.request or request or funct
 local isfile = isfile or readfile and function(filename) local succ,a = pcall(function() local b = readfile(filename) end) return succ end or function() end
 local writefile = writefile or function() end
 	
-Asset.video = function(url, videoName)
+function Asset.video(url, videoName)
 	if not videoName:match(".webm") then
 		videoName = videoName..".webm"
 	end
@@ -34,7 +28,7 @@ Asset.video = function(url, videoName)
 	end
 end
 
-Asset.image = function(url, imageName)
+function Asset.image(url, imageName)
 	if not imageName:match(".png") then
 		imageName = imageName..".png"
 	end
@@ -51,7 +45,7 @@ Asset.image = function(url, imageName)
 	end
 end
 
-Asset.audio = function(url, audioName)
+function Asset.audio(url, audioName)
 	if getsynasset and request and writefile and isfile then
 		if not isfile(audioName) then
 			local Response, TempFile = request({Url = url, Method = 'GET'})
@@ -64,7 +58,8 @@ Asset.audio = function(url, audioName)
 	end
 end
 
-Asset.write = function(url, assetName)
+
+function Asset.write(url, assetName)
 	if getsynasset and request and writefile and isfile then
 		if not isfile(assetName) then
 			local Response, TempFile = request({Url = url, Method = 'GET'})
