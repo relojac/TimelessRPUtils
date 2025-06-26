@@ -19,11 +19,19 @@ local Reference = JB.Reference
 
 function Button.new(name, active)
 	if typeof(name) ~= "string" then
-		warn("name arg is not a string")
+		warn("expected string for name, got", typeof(name)..". defaulting to nil.")
+		name = "Button"
 	elseif typeof(active) ~= "bool" then
-		warn("active arg is not a bool")
+		warn("expected bool for active, got", typeof(name)..". defaulting to true.")
+		active = true
 	end
-	local filePref = name.."Button" or "Button"
+
+	local filePref
+	if not name:match("Button") then
+		filePref = name.."Button" or "Button"
+	else
+		filePref = name or "Button"
+	end
 	
 	local b = Instance.new("ImageButton", Reference)
 		b.Name = filePref
