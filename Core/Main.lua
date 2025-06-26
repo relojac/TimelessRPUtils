@@ -13,19 +13,8 @@
 local genv = (getgenv and getgenv()) or shared -- genv stands for Global Environment! I'm assuming you know what Global Environment means, especially if you're reverse engineering this of all things.
 local Settings = genv.Settings -- This was defined in EXECUTEME.lua!
 
-genv.Values = {
-	["Gui"] = {
-		["JumpButton"] = {
-			["Position"] = UDim2.new(0, 0, 0, 0),
-			["Size"] = UDim2.new(0, 0, 0, 0)
-		}
-	}
-}
-genv.Module = {} -- All scripts in /Core/Module will shove their functions into this. Basically.
-local Values = genv.Values
+genv.Module = genv.Module or {} -- All scripts in /Core/Module will shove their functions into this. Basically.
 local Module = genv.Module
-
-local JB = Values.Gui.JumpButton
 
 local Players = game:GetService("Players")
 local RunService = game:GetService("RunService")
@@ -44,17 +33,12 @@ local JumpRef = Instance.new("Frame", TouchControlFrame) -- This will make a ref
 	JumpRef.Size = JumpButton.Size
 
 local function updateGui()
-	JB.Position = JumpButton.Position
-	JB.Size = JumpButton.Size
+	JumpRef.Position = JumpButton.Position
+	JumpRef.Size = JumpButton.Size
 end
 
 JumpButton:GetPropertyChangedSignal("Position"):Connect(updateGui)
 JumpButton:GetPropertyChangedSignal("Size"):Connect(updateGui)
-
-RunService.RenderStepped:Connect(function() -- This runs every frame.
-	JumpRef.Position = JB.Position
-	JumpRef.Size = JB.Size
-end)
 
 --|| MODULES ||--
 
