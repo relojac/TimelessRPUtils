@@ -6,7 +6,7 @@ genv.Module = genv.Module or {}
 local Module = genv.Module
 local Settings = genv.Settings
 
-local AlwaysRedownload = Settings.AlwaysRedownloadAssets
+local AlwaysRedownloadAssets = Settings.AlwaysRedownloadAssets
 
 local Asset = Module.Asset
 
