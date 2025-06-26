@@ -10,11 +10,11 @@ local AlwaysRedownload = Settings.AlwaysRedownloadAssets
 
 local Asset = Module.Asset
 
-loadstring(game:HttpGet("https://raw.githubusercontent.com/relojac/TimelessRPUtils/refs/heads/main/AssetTable.lua"))()
-local AllAssets = genv.AllAssets
+loadstring(game:HttpGet("https://raw.githubusercontent.com/relojac/TimelessRPUtils/refs/heads/main/Assets/AssetTable.lua"))()
+local AssetTable = genv.AssetTable
 
-for name, entry in pairs(AllAssets) do
-	print("access", entry, "of AllAssets")
+for name, entry in pairs(AssetTable) do
+	print("access", entry, "of AssetTable")
 	for _, v in ipairs(entry) do
 		if AlwaysRedownloadAssets then Asset.del(v) end
 		
