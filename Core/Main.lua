@@ -13,8 +13,7 @@ genv.Module = {}
 local Values = genv.Values
 local Module = genv.Module
 
-local JBPosition = Values.Gui.JumpButton.Position
-local JBSize = Values.Gui.JumpButton.Size
+local JB = Values.Gui.JumpButton
 
 local Players = game:GetService("Players")
 local RunService = game:GetService("RunService")
@@ -31,16 +30,16 @@ local JumpRef = Instance.new("Frame", TouchControlFrame)
 	JumpRef.BackgroundTransparency = 1
 
 local function updateGui()
-	JBPosition = JumpButton.Position
-	JBSize = JumpButton.Size
+	JB.Position = JumpButton.Position
+	JB.Size = JumpButton.Size
 end
 
 JumpButton:GetPropertyChangedSignal("Position"):Connect(updateGui)
 JumpButton:GetPropertyChangedSignal("Size"):Connect(updateGui)
 
 RunService.RenderStepped:Connect(function()
-	if JumpRef.Position ~= JBPosition then JumpRef.Position = JBPosition end
-	if JumpRef.Size ~= JBSize then JumpRef.Size = JBSize end
+	if JumpRef.Position ~= JB.Position then JumpRef.Position = JB.Position end
+	if JumpRef.Size ~= JB.Size then JumpRef.Size = JB.Size end
 end)
 
 loadstring(game:HttpGet("https://raw.githubusercontent.com/relojac/TimelessRPUtils/refs/heads/main/Core/Module/Positioner.lua"))()
