@@ -5,6 +5,7 @@ local Asset = Module.Asset
 
 genv.AllAssets = genv.AllAssets or {}
 local AllAssets = genv.AllAssets
+local AlwaysRedownload = genv.AlwaysRedownload or false
 
 local getsynasset = getsynasset or getcustomasset or function() end
 
@@ -32,11 +33,13 @@ AllAssets.AutoLoadedEffects = {
 }
 
 for _, v in ipairs(AllAssets.Buttons) do
+	if AlwaysRedownload then Asset.del(v) end
 	Asset.write("https://github.com/relojac/TimelessRPUtils/raw/refs/heads/main/Assets/Buttons/"..v, v)
 	print(getsynasset(v))
 end
 
 for _, v in ipairs(AllAssets.AutoLoadedEffects) do
+	if AlwaysRedownload then Asset.del(v) end
 	Asset.write("https://github.com/relojac/TimelessRPUtils/raw/refs/heads/main/Assets/AutoLoadedEffects/"..v, v)
 	print(getsynasset(v))
 end
