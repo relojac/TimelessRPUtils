@@ -69,3 +69,5 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/relojac/TimelessRPUti
 loadstring(game:HttpGet("https://raw.githubusercontent.com/relojac/TimelessRPUtils/refs/heads/main/Core/Module/Asset.lua"))()
 
 --
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/relojac/TimelessRPUtils/refs/heads/main/Core/Buttons/Sit.lua"))()
