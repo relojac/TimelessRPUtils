@@ -73,10 +73,10 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/relojac/TimelessRPUti
 
 --|| ASSETS ||--
 
-loadstring(game:HttpGet("https://github.com/relojac/TimelessRPUtils/raw/refs/heads/main/Core/AssetLoader.lua"))()
+loadstring(game:HttpGet("https://github.com/relojac/TimelessRPUtils/raw/refs/heads/main/Core/AssetDownloader.lua"))()
 
 --|| BUTTONS ||--
 
-if Settings.Sit.Enabled then loadstring(game:HttpGet("https://raw.githubusercontent.com/relojac/TimelessRPUtils/refs/heads/main/Core/Buttons/Sit.lua"))() end
+if Settings.Buttons.Sit.Enabled then loadstring(game:HttpGet("https://raw.githubusercontent.com/relojac/TimelessRPUtils/refs/heads/main/Core/Buttons/Sit.lua"))() end
 
 --|| ADDONS ||--
