@@ -1,5 +1,6 @@
 local genv = (getgenv and getgenv()) or shared
 
+local Settings = genv.Settings
 local Module = genv.Module
 
 local Button = Module.Button
@@ -20,7 +21,7 @@ end)
 
 local button = Button.new("SitButton", true)
 	button.PressedImage = nil
-	button.Position = Positioner.do(-1, 0)
+	button.Position = Positioner.do(Settings.Buttons.Sit.Position)
 
 button.MouseButton1Click:Connect(function()
 	if not Humanoid.Sit then
