@@ -44,18 +44,24 @@ local JumpRef = Instance.new("Frame", TouchControlFrame) -- This will make a ref
 	JumpRef.BackgroundTransparency = 1
 	JB.Reference = JumpRef
 
+local dirty = false -- This becomes true IF a property doesn't match. I-it's not what you think it means, I swear! Stop looking at me like that!
+
 local function updateGui()
 	JB.Position = JumpButton.Position
 	JB.Size = JumpButton.Size
+
+	dirty = true 
 end
 
 JumpButton:GetPropertyChangedSignal("Position"):Connect(updateGui)
 JumpButton:GetPropertyChangedSignal("Size"):Connect(updateGui)
 
 RunService.RenderStepped:Connect(function() -- This runs every frame.
-	if JumpRef.Position ~= JB.Position or JumpRef.Size ~= JB.Size then 
+	if dirty then 
 		JumpRef.Position = JB.Position
 		JumpRef.Size = JB.Size
+
+		dirty = false
 	end
 end)
 
