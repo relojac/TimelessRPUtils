@@ -17,6 +17,6 @@ it's somewhat cluttered, but it's flexible.
 # Code
 load the script by configuring and executing [this code](https://github.com/relojac/TimelessRPUtils/blob/main/EXECUTEME.lua).
 
-# Code
+# Credits
 - [Gelatek Reanimate](https://github.com/Gelatekussy/GelatekReanimate/tree/main) by Gelatek/xyzkade - genuinely helped understand how to load assets from a url
 - [Naming Standard](https://github.com/unified-naming-convention/NamingStandard/tree/main) by ScriptUNC/Unified Naming Convention - a well documented API for Roblox executors. genuinely learned a lot from here (and it's so POWERFUL..!!)
