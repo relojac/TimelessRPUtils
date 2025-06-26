@@ -78,7 +78,18 @@ function Asset.del(assetName)
 		if isfile(assetName) then
 			delfile(assetName)
 		else
-			print(assetName, "is not a valid member of workspace!")
+			warn(assetName, "is not a valid member of workspace!")
+		end
+	end
+end
+
+function Asset.get(asset)
+	if works then
+		if isfile(asset) then
+			return getsynasset(asset)
+		else
+			warn(asset, "is not a valid member of workspace!")
+			return
 		end
 	end
 end
