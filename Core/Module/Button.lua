@@ -22,8 +22,8 @@ local getsynasset = getsynasset or getcustomasset or function() end
 function Button.new(name, active)
 	local b = Instance.new("ImageButton", Reference)
 		b.Name = name
-		b.Image = getsynasset("Button_off")
-		b.PressedImage = getsynasset("Button_on")
+		b.Image = getsynasset(name.."_off")
+		b.PressedImage = getsynasset(name.."_on")
 		b.Active = active
 		b.BackgroundTransparency = 1
 		b.Size = UDim2.fromScale(1, 1)
