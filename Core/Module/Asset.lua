@@ -10,13 +10,16 @@ local getsynasset = getsynasset or getcustomasset or function() end
 local request = syn and syn.request or http and http.request or request or function() end
 local isfile = isfile or readfile and function(filename) local succ,a = pcall(function() local b = readfile(filename) end) return succ end or function() end
 local writefile = writefile or function() end
+local delfile = delfile or function() end
+
+local works = getsynasset and request and writefile and isfile and delfile
 	
 function Asset.video(url, videoName)
 	if not videoName:match(".webm") then
 		videoName = videoName..".webm"
 	end
 	
-	if getsynasset and request and writefile and isfile then
+	if works then
 		if not isfile(videoName) then
 			local Response, TempFile = request({Url = url, Method = 'GET'})
 			if Response.StatusCode == 200 then
@@ -29,7 +32,7 @@ function Asset.video(url, videoName)
 end
 
 function Asset.image(url, imageName)
-	if getsynasset and request and writefile and isfile then
+	if works then
 		if not isfile(imageName) then
 			local Response, TempFile = request({Url = url, Method = 'GET'})
 			if Response.StatusCode == 200 then
@@ -42,7 +45,7 @@ function Asset.image(url, imageName)
 end
 
 function Asset.audio(url, audioName)
-	if getsynasset and request and writefile and isfile then
+	if works then
 		if not isfile(audioName) then
 			local Response, TempFile = request({Url = url, Method = 'GET'})
 			if Response.StatusCode == 200 then
@@ -56,12 +59,24 @@ end
 
 
 function Asset.write(url, assetName)
-	if getsynasset and request and writefile and isfile then
+	if works then
 		if not isfile(assetName) then
 			local Response, TempFile = request({Url = url, Method = 'GET'})
 			if Response.StatusCode == 200 then
 				writefile(assetName, Response.Body)
 			end
+		else
+			print(assetName, "already exists!")
+		end
+	end
+end
+
+function Asset.del(assetName)
+	if works then
+		if isfile(assetName) then
+			delfile(assetName)
+		else
+			print(assetName, "is not a valid member of workspace!")
 		end
 	end
 end
