@@ -15,3 +15,5 @@ it's somewhat cluttered, but it's flexible.
 > if you will, it's not like i can stop you, but if you get banned, don't come crying to me about it. it's your choice.
 
 # Code
+load the script by configuring and executing [this code](https://github.com/relojac/TimelessRPUtils/blob/main/EXECUTEME.lua).
+you can also delete all the assets from your workspace folder (if you have trouble identifying them or can't access it) by executing [this code](https://github.com/relojac/TimelessRPUtils/blob/main/DELETEASSETS.lua).
