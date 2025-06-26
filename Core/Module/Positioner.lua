@@ -11,7 +11,7 @@ local Positioner = genv.Positioner
 
 local butSp = 1 + ButtonSpacing
 
-Positioner.do = function(pos)
+Positioner.get = function(pos)
 	local X, Y = pos[1], pos[2]
 	
 	local xF = (X or -1) * butSp
