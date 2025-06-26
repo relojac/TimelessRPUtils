@@ -3,15 +3,19 @@ local genv = (getgenv and getgenv()) or shared
 genv.Module = genv.Module or {}
 local Module = genv.Module
 
+Module.Asset = Module.Asset or {}
+local Asset = Module.Asset
+
 local getsynasset = getsynasset or getcustomasset or function() end 
 local request = syn and syn.request or http and http.request or request or function() end
 local isfile = isfile or readfile and function(filename) local succ,a = pcall(function() local b = readfile(filename) end) return succ end or function() end
 local writefile = writefile or function() end
-
-function Module.loadVideo(url, videoName)
+	
+function Asset.loadVideo(url, videoName)
 	if not videoName:match(".webm") then
-		videoName = videoName..".webm" -- VideoFrames only support webm
+		videoName = videoName..".webm"
 	end
+	
 	if getsynasset and request and writefile and isfile then
 		if not isfile(videoName) then
 			local Response, TempFile = request({Url = url, Method = 'GET'})
@@ -20,11 +24,15 @@ function Module.loadVideo(url, videoName)
 			end
 		end
 
-		return getsynasset(videoName)
+		return getsynasset(videoName) or nil
 	end
 end
 
-function Module.loadImage(url, imageName)
+function Asset.loadImage(url, imageName)
+	if not imageName:match(".png") then
+		imageName = imageName..".png"
+	end
+	
 	if getsynasset and request and writefile and isfile then
 		if not isfile(imageName) then
 			local Response, TempFile = request({Url = url, Method = 'GET'})
@@ -33,6 +41,23 @@ function Module.loadImage(url, imageName)
 			end
 		end
 
-		return getsynasset(imageName)
+		return getsynasset(imageName) or "rbxasset://textures/ui/GuiImagePlaceholder.png"
+	end
+end
+
+function Asset.loadAudio(url, audioName)
+	if not audioName:match(".ogg") then
+		audioName = audioName..".ogg"
+	end
+	
+	if getsynasset and request and writefile and isfile then
+		if not isfile(audioName) then
+			local Response, TempFile = request({Url = url, Method = 'GET'})
+			if Response.StatusCode == 200 then
+				writefile(audioName, Response.Body)
+			end
+		end
+
+		return getsynasset(audioName) or "rbxasset://sounds/uuhhh.mp3"
 	end
 end
