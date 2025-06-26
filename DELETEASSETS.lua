@@ -2,10 +2,14 @@
 
 local genv = (getgenv and getgenv()) or shared
 
+genv.Module = genv.Module or {}
 local Module = genv.Module
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/relojac/TimelessRPUtils/refs/heads/main/Core/Module/Asset.lua"))()
+
 local Asset = Module.Asset
 
-loadstring(game:HttpGet("https://github.com/relojac/TimelessRPUtils/raw/refs/heads/main/AssetTable.lua"))()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/relojac/TimelessRPUtils/refs/heads/main/Core/AssetTable.lua"))()
 local AllAssets = genv.AllAssets
 
 for _, entry in ipairs(AllAssets) do
