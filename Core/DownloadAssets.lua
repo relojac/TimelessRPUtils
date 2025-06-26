@@ -24,8 +24,16 @@ local buttons = {
 	"SitButton_off.png",
 	"SitButton_on.png"
 }
+local effects = {
+	"vignette.png"
+}
 
 for _, v in ipairs(buttons) do
 	Asset.write("https://github.com/relojac/TimelessRPUtils/raw/refs/heads/main/Assets/Buttons/"..v, v)
+	print(getsynasset(v))
+end
+
+for _, v in ipairs(effects) do
+	Asset.write("https://github.com/relojac/TimelessRPUtils/raw/refs/heads/main/Assets/AutoLoadedEffects/"..v, v)
 	print(getsynasset(v))
 end
