@@ -3,11 +3,8 @@ local genv = (getgenv and getgenv()) or shared
 genv.Module = genv.Module or {}
 local Module = genv.Module
 
-Module.Button = Module.Button or {
-	["new"] = nil,
-	["del"] = nil
-}
-local Button = genv.Button
+Module.Button = Module.Button or {}
+local Button = Module.Button
 
 local Values = genv.Values
 
@@ -20,7 +17,7 @@ local JB = Values.Gui.JumpButton
 local Reference = JB.Reference
 
 
-Button.new = function(name, active)
+function Button.new(name, active)
 	if typeof(name) ~= "string" then
 		warn("name arg is not a string")
 	elseif typeof(active) ~= "bool" then
@@ -39,7 +36,7 @@ Button.new = function(name, active)
 	return b
 end
 
-Button.del = function(name)
+function Button.del(name)
 	if typeof(name) ~= "string" then
 		warn("name arg is not a string")
 		return
