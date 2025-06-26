@@ -6,15 +6,12 @@ local ButtonSpacing = Settings.ButtonSpacing or 0.1
 genv.Module = genv.Module or {}
 local Module = genv.Module
 
-genv.Positioner = genv.Positioner or {
-	["get"] = nil,
-	["reset"] = nil
-}
-local Positioner = genv.Positioner
+Module.Positioner = Module.Positioner or {}
+local Positioner = Module.Positioner
 
 local butSp = 1 + ButtonSpacing
 
-Positioner.get = function(pos)
+function Positioner.get(pos)
 	local X, Y = pos[1], pos[2]
 	
 	local xF = (X or -1) * butSp
@@ -23,6 +20,6 @@ Positioner.get = function(pos)
 	return UDim2.fromScale(xF, yF)
 end
 
-Positioner.reset = function(button)
+function Positioner.reset(button)
 	button.Position = UDim2.fromScale(0, 0)
 end
