@@ -29,10 +29,6 @@ function Asset.video(url, videoName)
 end
 
 function Asset.image(url, imageName)
-	if not imageName:match(".png") then
-		imageName = imageName..".png"
-	end
-	
 	if getsynasset and request and writefile and isfile then
 		if not isfile(imageName) then
 			local Response, TempFile = request({Url = url, Method = 'GET'})
