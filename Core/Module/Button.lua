@@ -23,11 +23,12 @@ function Button.new(name, active)
 	elseif typeof(active) ~= "bool" then
 		warn("active arg is not a bool")
 	end
+	local filePref = name or "Button"
 	
 	local b = Instance.new("ImageButton", Reference)
-		b.Name = name or "Button"
-		b.Image = getsynasset("Button_off.png")
-		b.PressedImage = getsynasset("Button_on.png")
+		b.Name = filePreg
+		b.Image = getsynasset(filePref.."_off.png")
+		b.PressedImage = getsyn_asset(filePref.."_on.png")
 		b.Active = active or true
 		b.BackgroundTransparency = 1
 
