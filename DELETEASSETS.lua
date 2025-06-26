@@ -5,36 +5,11 @@ local genv = (getgenv and getgenv()) or shared
 local Module = genv.Module
 local Asset = Module.Asset
 
-genv.AllAssets = genv.AllAssets or {}
+loadstring(game:HttpGet("https://github.com/relojac/TimelessRPUtils/raw/refs/heads/main/AssetTable.lua"))()
 local AllAssets = genv.AllAssets
 
-AllAssets.Buttons = {
-	"Button_off.png",
-	"Button_on.png", 
-
-	"DropButton_off.png",
-	"DropButton_on.png", 
-
-	"JumpButton_off.png",
-	"JumpButton_on.png", 
-
-	"NVButton_off.png",
-	"NVButton_on.png", 
-
-	"ResetButton_off.png",
-	"ResetButton_on.png", 
-
-	"SitButton_off.png",
-	"SitButton_on.png"
-}
-AllAssets.AutoLoadedEffects = {
-	"vignette.png"
-}
-
-for _, v in ipairs(AllAssets.Buttons) do
-	Asset.del(v)
-end
-
-for _, v in ipairs(AllAssets.AutoLoadedEffects) do
-	Asset.del(v)
+for _, entry in ipairs(AllAssets) do
+	for _, v in ipairs(entry) do
+		Asset.del(v)
+	end
 end
