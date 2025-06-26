@@ -65,9 +65,18 @@ RunService.RenderStepped:Connect(function() -- This runs every frame.
 	end
 end)
 
-loadstring(game:HttpGet("https://raw.githubusercontent.com/relojac/TimelessRPUtils/refs/heads/main/Core/Module/Positioner.lua"))()
-loadstring(game:HttpGet("https://raw.githubusercontent.com/relojac/TimelessRPUtils/refs/heads/main/Core/Module/Asset.lua"))()
+--|| MODULES ||--
 
---
+loadstring(game:HttpGet("https://raw.githubusercontent.com/relojac/TimelessRPUtils/refs/heads/main/Core/Module/Asset.lua"))()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/relojac/TimelessRPUtils/refs/heads/main/Core/Module/Button.lua"))()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/relojac/TimelessRPUtils/refs/heads/main/Core/Module/Positioner.lua"))()
+
+--|| ASSETS ||--
+
+loadstring(game:HttpGet("https://github.com/relojac/TimelessRPUtils/raw/refs/heads/main/Core/AssetLoader.lua"))()
+
+--|| BUTTONS ||--
 
 loadstring(game:HttpGet("https://raw.githubusercontent.com/relojac/TimelessRPUtils/refs/heads/main/Core/Buttons/Sit.lua"))()
+
+--|| ADDONS ||--
