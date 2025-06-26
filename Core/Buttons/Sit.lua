@@ -20,7 +20,7 @@ Player.CharacterAdded:Connect(function(new)
 end)
 
 local button = Button.new("SitButton", true)
-	button.PressedImage = nil
+	button.PressedImage = ""
 	button.Position = Positioner.get(Settings.Buttons.Sit.Position)
 
 button.MouseButton1Click:Connect(function()
