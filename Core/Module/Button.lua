@@ -3,7 +3,10 @@ local genv = (getgenv and getgenv()) or shared
 genv.Module = genv.Module or {}
 local Module = genv.Module
 
-Module.Button = Module.Button or {}
+Module.Button = Module.Button or {
+	["new"] = nil,
+	["del"] = nil
+}
 local Button = genv.Button
 
 local Values = genv.Values
