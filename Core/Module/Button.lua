@@ -18,14 +18,6 @@ local Reference = JB.Reference
 
 
 function Button.new(name, active)
-	if typeof(name) ~= "string" then
-		warn("expected string for name, got", typeof(name)..". defaulting to nil.")
-		name = "Button"
-	elseif typeof(active) ~= "boolean" then
-		warn("expected boolean for active, got", typeof(active)..". defaulting to true.")
-		active = true
-	end
-
 	local filePref
 	if not name:match("Button") then
 		filePref = name.."Button"
@@ -45,11 +37,6 @@ function Button.new(name, active)
 end
 
 function Button.del(name)
-	if typeof(name) ~= "string" then
-		warn("name arg is not a string")
-		return
-	end
-	
 	local b = Reference:FindFirstChild(name)
 
 	if b then
