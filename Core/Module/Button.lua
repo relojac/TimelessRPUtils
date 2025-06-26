@@ -21,16 +21,16 @@ function Button.new(name, active)
 	if typeof(name) ~= "string" then
 		warn("expected string for name, got", typeof(name)..". defaulting to nil.")
 		name = "Button"
-	elseif typeof(active) ~= "bool" then
-		warn("expected bool for active, got", typeof(name)..". defaulting to true.")
+	elseif typeof(active) ~= "boolean" then
+		warn("expected boolean for active, got", typeof(active)..". defaulting to true.")
 		active = true
 	end
 
 	local filePref
 	if not name:match("Button") then
-		filePref = name.."Button" or "Button"
+		filePref = name.."Button"
 	else
-		filePref = name or "Button"
+		filePref = name
 	end
 	
 	local b = Instance.new("ImageButton", Reference)
