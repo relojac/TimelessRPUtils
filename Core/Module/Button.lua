@@ -19,7 +19,7 @@ local Reference = JB.Reference
 
 function Button.new(name, active)
 	local b = Instance.new("ImageButton", Reference)
-		b.Name = filePref
+		b.Name = name
 		b.Image = getsynasset(name.."_off.png")
 		b.PressedImage = getsynasset(name.."_on.png")
 		b.Active = active or true
