@@ -1,6 +1,7 @@
 local genv = (getgenv and getgenv()) or shared
 genv.Settings = {
 	["ButtonSpacing"] = 0.1,
+	["AlwaysRedownloadAssets"] = false,
 	
 	["Buttons"] = {
 		["Drop"] = { -- Lets you drop an item if it is droppable.
