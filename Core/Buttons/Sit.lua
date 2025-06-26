@@ -21,7 +21,7 @@ end)
 
 local button = Button.new("SitButton", true)
 	button.PressedImage = nil
-	button.Position = Positioner.do(Settings.Buttons.Sit.Position)
+	button.Position = Positioner.get(Settings.Buttons.Sit.Position)
 
 button.MouseButton1Click:Connect(function()
 	if not Humanoid.Sit then
