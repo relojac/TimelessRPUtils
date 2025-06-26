@@ -77,6 +77,6 @@ loadstring(game:HttpGet("https://github.com/relojac/TimelessRPUtils/raw/refs/hea
 
 --|| BUTTONS ||--
 
-loadstring(game:HttpGet("https://raw.githubusercontent.com/relojac/TimelessRPUtils/refs/heads/main/Core/Buttons/Sit.lua"))()
+if Settings.Sit.Enabled then loadstring(game:HttpGet("https://raw.githubusercontent.com/relojac/TimelessRPUtils/refs/heads/main/Core/Buttons/Sit.lua"))() end
 
 --|| ADDONS ||--
