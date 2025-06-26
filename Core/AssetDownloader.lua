@@ -8,7 +8,7 @@ local AlwaysRedownload = Settings.AlwaysRedownloadAssets
 
 local Asset = Module.Asset
 
-loadstring(game:HttpGet("https://raw.githubusercontent.com/relojac/TimelessRPUtils/refs/heads/main/Core/AssetTable.lua"))()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/relojac/TimelessRPUtils/refs/heads/main/AssetTable.lua"))()
 local AllAssets = genv.AllAssets
 
 for name, entry in pairs(AllAssets) do
