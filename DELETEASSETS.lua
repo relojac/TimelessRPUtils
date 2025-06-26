@@ -12,9 +12,9 @@ local Asset = Module.Asset
 loadstring(game:HttpGet("https://raw.githubusercontent.com/relojac/TimelessRPUtils/refs/heads/main/Core/AssetTable.lua"))()
 local AllAssets = genv.AllAssets
 
-for _, entry in ipairs(AllAssets) do
-	print("access", entry, "of AllAssets"
-	for __, v in ipairs(entry) do
+for name, entry in pairs(AllAssets) do
+	print("access", entry, "of AllAssets")
+	for _, v in ipairs(entry) do
 		print("attempt to delete", v)
 		Asset.del(v)
 	end
