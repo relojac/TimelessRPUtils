@@ -57,3 +57,14 @@ function Asset.audio(url, audioName)
 		return getsynasset(audioName) or "rbxasset://sounds/uuhhh.mp3"
 	end
 end
+
+function Asset.write(url, assetName)
+	if getsynasset and request and writefile and isfile then
+		if not isfile(assetName) then
+			local Response, TempFile = request({Url = url, Method = 'GET'})
+			if Response.StatusCode == 200 then
+				writefile(audioname, Response.Body)
+			end
+		end
+	end
+end
