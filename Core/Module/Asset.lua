@@ -64,7 +64,7 @@ function Asset.write(url, assetName)
 		if not isfile(assetName) then
 			local Response, TempFile = request({Url = url, Method = 'GET'})
 			if Response.StatusCode == 200 then
-				writefile(audioname, Response.Body)
+				writefile(assetName, Response.Body)
 			end
 		end
 	end
