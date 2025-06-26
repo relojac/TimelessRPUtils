@@ -1,5 +1,7 @@
 local genv = (getgenv and getgenv()) or shared
 
+local getsynasset = getsynasset or getcustomasset or function() end
+
 genv.Module = genv.Module or {}
 local Module = genv.Module
 local Settings = genv.Settings
