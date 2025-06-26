@@ -6,11 +6,14 @@ local ButtonSpacing = Settings.ButtonSpacing or 0.1
 genv.Module = genv.Module or {}
 local Module = genv.Module
 
+genv.Positioner = genv.Positioner or {}
+local Positioner = genv.Positioner
+
 local butSp = 1 + ButtonSpacing
 
-function Module.Positioner(xM, yM, Button)
-	local X = xM * 1.1
-	local Y = yM * -1.1
+function Positioner.do(xM, yM)
+	local X = (xM or 1) * butSp
+	local Y = (yM or 0) * (butSp*-1)
 
-	Button.Position = UDim2.fromScale(X, Y)
+	return UDim2.fromScale(X, Y)
 end
