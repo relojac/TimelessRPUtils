@@ -38,12 +38,14 @@ JumpButton:GetPropertyChangedSignal("Position"):Connect(updateGui)
 JumpButton:GetPropertyChangedSignal("Size"):Connect(updateGui)
 
 RunService.RenderStepped:Connect(function()
-	if JumpRef.Position ~= JB.Position then JumpRef.Position = JB.Position end
-	if JumpRef.Size ~= JB.Size then JumpRef.Size = JB.Size end
+	if JumpRef.Position ~= JB.Position or JumpRef.Size ~= JB.Size then 
+		JumpRef.Position = JB.Position
+		JumpRef.Size = JB.Size
+	end
 end)
 
 loadstring(game:HttpGet("https://raw.githubusercontent.com/relojac/TimelessRPUtils/refs/heads/main/Core/Module/Positioner.lua"))()
 
 --
 
-loadstring(game:HttpGet(""))()
+-- loadstring(game:HttpGet("Hello! My name is Ms. Solyn A. Placeholder!"))()
