@@ -11,7 +11,7 @@ local request = syn and syn.request or http and http.request or request or funct
 local isfile = isfile or readfile and function(filename) local succ,a = pcall(function() local b = readfile(filename) end) return succ end or function() end
 local writefile = writefile or function() end
 	
-function Asset.video(url, videoName)
+Asset.video = function(url, videoName)
 	if not videoName:match(".webm") then
 		videoName = videoName..".webm"
 	end
@@ -28,7 +28,7 @@ function Asset.video(url, videoName)
 	end
 end
 
-function Asset.image(url, imageName)
+Asset.image = function(url, imageName)
 	if not imageName:match(".png") then
 		imageName = imageName..".png"
 	end
@@ -45,7 +45,7 @@ function Asset.image(url, imageName)
 	end
 end
 
-function Asset.audio(url, audioName)
+Asset.audio = function(url, audioName)
 	if getsynasset and request and writefile and isfile then
 		if not isfile(audioName) then
 			local Response, TempFile = request({Url = url, Method = 'GET'})
@@ -58,7 +58,7 @@ function Asset.audio(url, audioName)
 	end
 end
 
-function Asset.write(url, assetName)
+Asset.write = function(url, assetName)
 	if getsynasset and request and writefile and isfile then
 		if not isfile(assetName) then
 			local Response, TempFile = request({Url = url, Method = 'GET'})
