@@ -6,6 +6,7 @@ local Module = genv.Module
 local getsynasset = getsynasset or getcustomasset or function() end 
 local request = syn and syn.request or http and http.request or request or function() end
 local isfile = isfile or readfile and function(filename) local succ,a = pcall(function() local b = readfile(filename) end) return succ end or function() end
+local writefile = writefile or function() end
 
 function Module.loadVideo(url, videoName)
 	if not videoName:match(".webm") then
@@ -18,6 +19,8 @@ function Module.loadVideo(url, videoName)
 				writefile(videoName, Response.Body)
 			end
 		end
+
+		return getsynasset(videoName)
 	end
 end
 
@@ -29,5 +32,7 @@ function Module.loadImage(url, imageName)
 				writefile(imageName, Response.Body)
 			end
 		end
+
+		return getsynasset(imageName)
 	end
 end
