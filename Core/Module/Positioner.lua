@@ -11,11 +11,13 @@ local Positioner = genv.Positioner
 
 local butSp = 1 + ButtonSpacing
 
-function Positioner.do(xM, yM)
-	local X = (xM or -1) * butSp
-	local Y = (yM or 0) * (butSp*-1)
+function Positioner.do(pos)
+	local X, Y = pos[1], pos[2]
+	
+	local xF = (X or -1) * butSp
+	local yF = (Y or 0) * (butSp*-1)
 
-	return UDim2.fromScale(X, Y)
+	return UDim2.fromScale(xF, yF)
 end
 
 function Positioner.reset(button)
