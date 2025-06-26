@@ -18,8 +18,6 @@ for name, entry in pairs(AllAssets) do
 	for _, v in ipairs(entry) do
 		if AlwaysRedownloadAssets then Asset.del(v) end
 		
-		print("attempt to download", v)
 		Asset.write("https://github.com/relojac/TimelessRPUtils/raw/refs/heads/main/Assets/"..name.."/"..v.."/", v)
-		print("downloaded", v, "-", getsynasset(v))
 	end
 end
