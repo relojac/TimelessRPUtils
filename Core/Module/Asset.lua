@@ -61,12 +61,14 @@ end
 function Asset.write(url, assetName)
 	if works then
 		if not isfile(assetName) then
+			print("attempt to download", assetName)
 			local Response, TempFile = request({Url = url, Method = 'GET'})
 			if Response.StatusCode == 200 then
 				writefile(assetName, Response.Body)
+				print("successful:", assetName, "-", getsynasset(assetName))
 			end
 		else
-			print(assetName, "already exists!")
+			warn(assetName, "already exists!")
 		end
 	end
 end
