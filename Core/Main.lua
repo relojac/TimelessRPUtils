@@ -17,9 +17,7 @@ genv.Values = {
 	["Gui"] = {
 		["JumpButton"] = {
 			["Position"] = UDim2.new(0, 0, 0, 0),
-			["Size"] = UDim2.new(0, 0, 0, 0),
-
-			["Reference"] = nil
+			["Size"] = UDim2.new(0, 0, 0, 0)
 		}
 	}
 }
@@ -42,27 +40,20 @@ local JumpButton = TouchControlFrame:WaitForChild("JumpButton") -- The JumpButto
 local JumpRef = Instance.new("Frame", TouchControlFrame) -- This will make a reference of the JumpButton. This is where all the buttons will show up if you have any.
 	JumpRef.Name = "JumpButtonReference"
 	JumpRef.BackgroundTransparency = 1
-	JB.Reference = JumpRef
-
-local dirty = false -- This becomes true IF a property doesn't match. I-it's not what you think it means, I swear! Stop looking at me like that!
+	JumpRef.Position = JumpButton.Position
+	JumpRef.Size = JumpButton.Size
 
 local function updateGui()
 	JB.Position = JumpButton.Position
 	JB.Size = JumpButton.Size
-
-	dirty = true 
 end
 
 JumpButton:GetPropertyChangedSignal("Position"):Connect(updateGui)
 JumpButton:GetPropertyChangedSignal("Size"):Connect(updateGui)
 
 RunService.RenderStepped:Connect(function() -- This runs every frame.
-	if dirty then 
-		JumpRef.Position = JB.Position
-		JumpRef.Size = JB.Size
-
-		dirty = false
-	end
+	JumpRef.Position = JB.Position
+	JumpRef.Size = JB.Size
 end)
 
 --|| MODULES ||--
