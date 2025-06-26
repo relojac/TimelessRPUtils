@@ -18,17 +18,10 @@ local Reference = JB.Reference
 
 
 function Button.new(name, active)
-	local filePref
-	if not name:match("Button") then
-		filePref = name.."Button"
-	else
-		filePref = name
-	end
-	
 	local b = Instance.new("ImageButton", Reference)
 		b.Name = filePref
-		b.Image = getsynasset(filePref.."_off.png")
-		b.PressedImage = getsyn_asset(filePref.."_on.png")
+		b.Image = getsynasset(name.."_off.png")
+		b.PressedImage = getsynasset(name.."_on.png")
 		b.Active = active or true
 		b.BackgroundTransparency = 1
 		b.Size = UDim2.fromScale(1, 1)
