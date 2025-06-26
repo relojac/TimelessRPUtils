@@ -33,8 +33,8 @@ end)
 
 RunService.Stepped:Connect(function()
 	if not Humanoid.Sit then
-		button.Image = getsynasset("SitButton_off.png")
+		button.Image = Asset.get("SitButton_off.png")
 	else
-		button.Image = getsynasset("SitButton_on.png")
+		button.Image = Asset.get("SitButton_on.png")
 	end
 end)
