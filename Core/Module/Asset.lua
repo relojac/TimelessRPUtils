@@ -3,7 +3,13 @@ local genv = (getgenv and getgenv()) or shared
 genv.Module = genv.Module or {}
 local Module = genv.Module
 
-Module.Asset = Module.Asset or {}
+Module.Asset = Module.Asset or {
+	["video"] = nil,
+	["image"] = nil,
+	["audio"] = nil,
+
+	["write"] = nil
+}
 local Asset = Module.Asset
 
 local getsynasset = getsynasset or getcustomasset or function() end 
