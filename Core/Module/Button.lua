@@ -23,14 +23,15 @@ function Button.new(name, active)
 	elseif typeof(active) ~= "bool" then
 		warn("active arg is not a bool")
 	end
-	local filePref = name or "Button"
+	local filePref = name.."Button" or "Button"
 	
 	local b = Instance.new("ImageButton", Reference)
-		b.Name = filePreg
+		b.Name = filePref
 		b.Image = getsynasset(filePref.."_off.png")
 		b.PressedImage = getsyn_asset(filePref.."_on.png")
 		b.Active = active or true
 		b.BackgroundTransparency = 1
+		b.Size = UDim2.fromScale(1, 1)
 
 	return b
 end
