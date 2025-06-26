@@ -35,7 +35,12 @@ genv.Settings = {
 			["Position"] = { -1, 1 },
 
 			["Toggled"] = false,
-			["IsTweened"] = true
+			["IsTweened"] = true, 
+
+			["Multipliers"] = {
+				["WalkSpeed"] = 1.5,
+				["FieldOfView"] = 1.3
+			}
 		},
 	},
 
@@ -43,10 +48,12 @@ genv.Settings = {
 		["NightVision"] = {
 			["ColorCorrection"] = true,
 			["PlayerHighlights"] = true,
-			["Vignette"] = true,
-
-			["Psychopathic"] = true
+			["Vignette"] = true
 		}
+	},
+
+	["Addons"] = {
+		["Psychopathic"] = false
 	}
 }
 
