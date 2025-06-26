@@ -3,9 +3,12 @@ local genv = (getgenv and getgenv()) or shared
 local Module = genv.Module
 local Asset = Module.Asset
 
+genv.AllAssets = genv.AllAssets or {}
+local AllAssets = genv.AllAssets
+
 local getsynasset = getsynasset or getcustomasset or function() end
 
-local buttons = {
+AllAssets.Buttons = {
 	"Button_off.png",
 	"Button_on.png", 
 
@@ -24,16 +27,16 @@ local buttons = {
 	"SitButton_off.png",
 	"SitButton_on.png"
 }
-local effects = {
+AllAssets.AutoLoadedEffects = {
 	"vignette.png"
 }
 
-for _, v in ipairs(buttons) do
+for _, v in ipairs(AllAssets.Buttons) do
 	Asset.write("https://github.com/relojac/TimelessRPUtils/raw/refs/heads/main/Assets/Buttons/"..v, v)
 	print(getsynasset(v))
 end
 
-for _, v in ipairs(effects) do
+for _, v in ipairs(AllAssets.AutoLoadedEffects) do
 	Asset.write("https://github.com/relojac/TimelessRPUtils/raw/refs/heads/main/Assets/AutoLoadedEffects/"..v, v)
 	print(getsynasset(v))
 end
