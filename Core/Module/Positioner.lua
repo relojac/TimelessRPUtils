@@ -6,7 +6,10 @@ local ButtonSpacing = Settings.ButtonSpacing or 0.1
 genv.Module = genv.Module or {}
 local Module = genv.Module
 
-genv.Positioner = genv.Positioner or {}
+genv.Positioner = genv.Positioner or {
+	["get"] = nil,
+	["reset"] = nil
+}
 local Positioner = genv.Positioner
 
 local butSp = 1 + ButtonSpacing
