@@ -13,7 +13,9 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/relojac/TimelessRPUti
 local AllAssets = genv.AllAssets
 
 for _, entry in ipairs(AllAssets) do
-	for _, v in ipairs(entry) do
+	print("access", entry, "of AllAssets"
+	for __, v in ipairs(entry) do
+		print("attempt to delete", v)
 		Asset.del(v)
 	end
 end
