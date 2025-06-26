@@ -1,9 +1,9 @@
 local genv = (getgenv and getgenv()) or shared
 
-genv.AllAssets = genv.AllAssets or {}
-local AllAssets = genv.AllAssets
+genv.AssetTable = genv.AssetTable or {}
+local AssetTable = genv.AssetTable
 
-AllAssets.Buttons = {
+AssetTable.Buttons = {
 	"Button_off.png",
 	"Button_on.png", 
 
@@ -23,11 +23,11 @@ AllAssets.Buttons = {
 	"SitButton_on.png"
 }
 
-AllAssets.AutoLoadedEffects = {
+AssetTable.AutoLoadedEffects = {
 	"vignette.png"
 }
 
-AllAssets.PsychopathicFlash = {
+AssetTable.PsychopathicFlash = {
 	"Charts.png",
 	"Letter.png",
 	"Ogscule.png",
@@ -36,3 +36,5 @@ AllAssets.PsychopathicFlash = {
 	"Sky.png",
 	"Verboten.png"
 }
+
+AssetTable.Sounds = {}
