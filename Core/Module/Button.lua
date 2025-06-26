@@ -6,15 +6,16 @@ local Module = genv.Module
 Module.Button = Module.Button or {}
 local Button = Module.Button
 
-local Values = genv.Values
-
 local Players = game:GetService("Players")
 
 local Player = Players.LocalPlayer
 local PlayerGui = Player:WaitForChild("PlayerGui")
 
-local JB = Values.Gui.JumpButton
-local Reference = JB.Reference
+local TouchGui = PlayerGui:WaitForChild("TouchGui")
+local TCF = TouchGui:WaitForChild("TouchControlFrame")
+local JumpButton = TCF:WaitForChild("JumpButton")
+
+local Reference = TCF:WaitForChild("JumpButtonReference")
 
 local getsynasset = getsynasset or getcustomasset or function() end
 
