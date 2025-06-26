@@ -17,7 +17,7 @@ local JB = Values.Gui.JumpButton
 local Reference = JB.Reference
 
 
-function Button.new(name, active)
+Button.new = function(name, active)
 	if typeof(name) ~= "string" then
 		warn("name arg is not a string")
 	elseif typeof(active) ~= "bool" then
@@ -36,7 +36,7 @@ function Button.new(name, active)
 	return b
 end
 
-function Button.del(name)
+Button.del = function(name)
 	if typeof(name) ~= "string" then
 		warn("name arg is not a string")
 		return
