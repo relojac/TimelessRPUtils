@@ -122,7 +122,7 @@ RunService.RenderStepped:Connect(function()
 	if not sprinting.Value and Toggled then
 		button.Image = off
 		button.PressedImage = on
-	else
+	elseif sprinting.Value and Toggled then
 		button.Image = on
 		button.PressedImage = off
 	end
