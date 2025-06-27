@@ -31,11 +31,7 @@ local button = Button.new(btn, true)
 	button.Position = Positioner.get(Settings.Buttons.Faint.Position)
 
 button.MouseButton1Click:Connect(function()
-	if not Humanoid.PlatformStand then
-		Humanoid.PlatformStand = true
-	else
-		Humanoid.PlatformStand = false
-	end
+	Humanoid.PlatformStand = not Humanoid.PlatformStand
 end)
 
 RunService.Stepped:Connect(function()
