@@ -42,7 +42,13 @@ AssetTable.PsychopathicFlash = {
 	"Sky.png",
 	"Verboten.png",
 
-	"NoWayOut.png"
+	"nowayout.png"
 }
 
-AssetTable.Sounds = {}
+AssetTable.Sounds = {
+	"Moonglitch.ogg",
+	"Glitch.ogg",
+
+	"NVButton_off.ogg",
+	"NVButton_on.ogg"
+}
