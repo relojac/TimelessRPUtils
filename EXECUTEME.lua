@@ -26,12 +26,12 @@ genv.Settings = {
 			["Position"] = { -2, 1 }
 		},
 		
-		["Sit"] = {
+		["Sit"] = { -- Makes your Character sit.
 			["Enabled"] = true,
 			["Position"] = { -1, 0 }
 		},
 		
-		["Sprint"] = {
+		["Sprint"] = { -- Multiplies your FOV and WalkSpeed.
 			["Enabled"] = true,
 			["Position"] = { -1, 1 },
 
