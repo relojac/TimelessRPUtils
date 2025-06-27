@@ -106,6 +106,7 @@ Humanoid.StateChanged:Connect(function()
 	else
 		button.Visible = false
 		sprinting.Value = false
+		sprintStop(Humanoid, Camera)
 	end
 end)
 
@@ -131,11 +132,16 @@ else
 end
 
 RunService.RenderStepped:Connect(function()
-	if not sprinting.Value then
+	if not Toggled then
 		button.Image = off
 		button.PressedImage = on
 	else
-		button.Image = on
-		button.PressedImage = off
+		if not sprinting.Value then
+			button.Image = off
+			button.PressedImage = on
+		else
+			button.Image = on
+			button.PressedImage = off
+		end
 	end
 end) 
