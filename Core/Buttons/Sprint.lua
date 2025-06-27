@@ -18,11 +18,11 @@ local Players = game:GetService("Players")
 local RunService = game:GetService("RunService")
 local TweenService = game:GetService("TweenService")
 
-local info = {
+local info = TweenInfo.new(
 	0.5,
 	Enum.EasingStyle.Exponential,
 	Enum.EasingDirection.Out
-}
+)
 
 local Player = Players.LocalPlayer
 local Character = Player.Character or Player.CharacterAdded:Wait()
@@ -80,7 +80,7 @@ local function sprintStart(hum, cam)
 	end
 end
 
-local function sprintEnd(hum, cam)
+local function sprintStop(hum, cam)
 	local Tween_1 = TweenService:Create(hum, info, { WalkSpeed = BaseWS })
 	local Tween_2 = TweenService:Create(cam, info, { FieldOfView = BaseFOV })
 	
