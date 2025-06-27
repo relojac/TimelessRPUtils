@@ -30,7 +30,8 @@ AssetTable.Buttons = {
 }
 
 AssetTable.AutoLoadedEffects = {
-	"vignette.png"
+	"vignette.png",
+	"vignette_1560x720.png"
 }
 
 AssetTable.PsychopathicFlash = {
