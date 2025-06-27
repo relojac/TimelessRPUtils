@@ -23,8 +23,8 @@ local getsynasset = getsynasset or getcustomasset or function() end
 function Button.new(name, active)
 	local b = Instance.new("ImageButton", Reference)
 		b.Name = name
-		b.Image = getsynasset(name.."_off")
-		b.PressedImage = getsynasset(name.."_on")
+		b.Image = getsynasset("Timeless/".. name.. "_off")
+		b.PressedImage = getsynasset("Timeless/" .. name.. "_on")
 		b.Active = active
 		b.BackgroundTransparency = 1
 		b.Size = UDim2.fromScale(1, 1)
@@ -37,8 +37,9 @@ function Button.del(name)
 
 	if b then
 		b:Destroy()
+		return true
 	else
 		warn(name, "is not a valid Button object")
+		return false
 	end
-	return
 end
