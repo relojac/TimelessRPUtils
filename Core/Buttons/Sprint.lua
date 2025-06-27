@@ -121,6 +121,8 @@ Humanoid.StateChanged:Connect(function()
 		else
 			sprintStop(Humanoid, Camera)
 		end
+	else
+		sprintStop(Humanoid, Camera)
 	end
 end)
 
