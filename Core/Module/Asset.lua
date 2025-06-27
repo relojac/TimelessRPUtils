@@ -18,9 +18,9 @@ local delfolder = delfolder or function() end
 local works = getsynasset and request and writefile and isfile and delfile and makefolder and isfolder and delfolder
 
 if works then
-	-- if not isfolder("Timeless") then
+	if not isfolder("Timeless") then
 		makefolder("Timeless")
-	-- end
+	end
 end
 	
 function Asset.video(url, path)
