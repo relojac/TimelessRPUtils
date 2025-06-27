@@ -129,11 +129,9 @@ end)
 RunService.RenderStepped:Connect(function()
 	if not sprinting.Value then
 		button.Image = off
-		task.wait()
 		button.PressedImage = on
 	else
 		button.Image = on
-		task.wait()
 		button.PressedImage = off
 	end
 end) 
