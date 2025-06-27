@@ -53,20 +53,6 @@ local button = Button.new(btn, true)
 	button.PressedImage = on
 	button.Position = Positioner.get(Settings.Buttons.Sprint.Position)
 
-if not Toggled then
-	button.MouseButton1Click:Connect(function()
-		sprinting.Value = not sprinting.Value
-	end)
-else
-	button.MouseButton1Down:Connect(function()
-		sprinting.Value = true
-	end)
-
-	button.MouseButton1Up:Connect(function()
-		sprinting.Value = false
-	end) 
-end
-
 local BaseWS, BaseFOV
 local blockBase = false
 RunService.RenderStepped:Connect(function()
@@ -115,16 +101,29 @@ end
 
 
 Humanoid.StateChanged:Connect(function()
-	if sprinting.Value then
-		if Humanoid.MoveDirection.Magnitude > 0 then
-			sprintStart(Humanoid, Camera)
-		else
-			sprintStop(Humanoid, Camera)
-		end
+	if Humanoid.MoveDirection.Magnitude > 0 then
+		button.Visible = true
 	else
-		sprintStop(Humanoid, Camera)
+		button.Visible = false
 	end
 end)
+
+if Toggled then
+	button.MouseButton1Click:Connect(function()
+		sprinting.Value = not sprinting.Value
+		sprintStart(Humanoid, Camera)
+	end)
+else
+	button.MouseButton1Down:Connect(function()
+		sprinting.Value = true
+		sprintStart(Humanoid, Camera)
+	end)
+
+	button.MouseButton1Up:Connect(function()
+		sprinting.Value = false
+		sprintStop(Humanoid, Camera)
+	end) 
+end
 
 RunService.RenderStepped:Connect(function()
 	if not sprinting.Value then
