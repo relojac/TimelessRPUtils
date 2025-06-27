@@ -12,7 +12,7 @@ local IsTweened = Settings.Buttons.Sprint.IsTweened or true
 
 local m = Settings.Buttons.Sprint.Multipliers or {}
 local WSm = m.WalkSpeed or 1.5
-local FOVm = m.FieldOfView or 1.3
+local FOVm = m.FieldOfView or 1.15
 
 local Players = game:GetService("Players")
 local RunService = game:GetService("RunService")
@@ -89,8 +89,8 @@ local function sprintStop(hum, cam)
 
 		blockBase = false
 	else
-		hum.WalkSpeed = BaseWS*WSm
-		cam.FieldOfView = BaseFOV*FOVm
+		hum.WalkSpeed = BaseWS
+		cam.FieldOfView = BaseFOV
 
 		blockBase = false
 	end
