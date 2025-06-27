@@ -5,10 +5,13 @@ local AssetTable = genv.AssetTable
 
 AssetTable.Buttons = {
 	"Button_off.png",
-	"Button_on.png", 
+	"Button_on.png",
 
 	"DropButton_off.png",
 	"DropButton_on.png", 
+
+	"FaintButton_off.png",
+	"FaintButton_on.png",
 
 	"JumpButton_off.png",
 	"JumpButton_on.png", 
@@ -20,7 +23,10 @@ AssetTable.Buttons = {
 	"ResetButton_on.png", 
 
 	"SitButton_off.png",
-	"SitButton_on.png"
+	"SitButton_on.png",
+
+	"SprintButton_off.png",
+	"SprintButton_on.png"
 }
 
 AssetTable.AutoLoadedEffects = {
@@ -34,7 +40,9 @@ AssetTable.PsychopathicFlash = {
 	"Omniscience.png",
 	"Positioner.png",
 	"Sky.png",
-	"Verboten.png"
+	"Verboten.png",
+
+	"NoWayOut.png"
 }
 
 AssetTable.Sounds = {}
