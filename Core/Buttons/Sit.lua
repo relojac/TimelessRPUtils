@@ -20,7 +20,12 @@ Player.CharacterAdded:Connect(function(new)
 	Humanoid = Character:WaitForChild("Humanoid")
 end)
 
-local button = Button.new("SitButton", true)
+local btn = "SitButton"
+
+local off = Asset.get(btn .. "off.png")
+local on = Asset.get(btn .. "on.png")
+
+local button = Button.new(btn, true)
 	button.PressedImage = ""
 	button.Position = Positioner.get(Settings.Buttons.Sit.Position)
 
@@ -34,8 +39,8 @@ end)
 
 RunService.Stepped:Connect(function()
 	if not Humanoid.Sit then
-		button.Image = Asset.get("SitButton_off.png")
+		button.Image = off
 	else
-		button.Image = Asset.get("SitButton_on.png")
+		button.Image = on
 	end
 end)
