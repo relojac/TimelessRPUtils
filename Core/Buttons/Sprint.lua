@@ -112,7 +112,11 @@ end)
 if Toggled then
 	button.MouseButton1Click:Connect(function()
 		sprinting.Value = not sprinting.Value
-		sprintStart(Humanoid, Camera)
+		if sprinting.Value then
+			sprintStart(Humanoid, Camera)
+		else
+			sprintStop(Humanoid, Camera)
+		end
 	end)
 else
 	button.MouseButton1Down:Connect(function()
