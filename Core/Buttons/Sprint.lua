@@ -29,6 +29,9 @@ local Character = Player.Character or Player.CharacterAdded:Wait()
 local Humanoid = Character:WaitForChild("Humanoid")
 local Camera = workspace.CurrentCamera
 
+local BaseWS = Humanoid.WalkSpeed or 16
+local BaseFOV = Camera.FieldOfView or 70
+
 local sprinting = Instance.new("BoolValue", Character)
 	sprinting.Name = "Sprinting"
 	sprinting.Value = false
@@ -41,6 +44,9 @@ Player.CharacterAdded:Connect(function(new)
 	sprinting = Instance.new("BoolValue", Character)
 		sprinting.Name = "Sprinting"
 		sprinting.Value = false
+
+	BaseWS = Humanoid.WalkSpeed
+	BaseFOV = Camera.FieldOfView
 end)
 
 local btn = "SprintButton"
@@ -53,16 +59,8 @@ local button = Button.new(btn, true)
 	button.PressedImage = on
 	button.Position = Positioner.get(Settings.Buttons.Sprint.Position)
 
-local BaseWS, BaseFOV
-local blockBase = false
-
 
 local function sprintStart(hum, cam)
-	if not blockBase then
-		BaseWS = hum.WalkSpeed
-		BaseFOV = cam.FieldOfView
-	end
-
 	local Tween_1 = TweenService:Create(hum, info, { WalkSpeed = BaseWS * WSm })
 	local Tween_2 = TweenService:Create(cam, info, { FieldOfView = BaseFOV * FOVm })
 
@@ -84,15 +82,9 @@ local function sprintStop(hum, cam)
 	if IsTweened then
 		Tween_1:Play()
 		Tween_2:Play()
-
-		Tween_1.Completed:Wait()
-
-		blockBase = false
 	else
 		hum.WalkSpeed = BaseWS
 		cam.FieldOfView = BaseFOV
-
-		blockBase = false
 	end
 end
 
