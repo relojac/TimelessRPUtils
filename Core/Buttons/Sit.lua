@@ -44,6 +44,6 @@ RunService.Stepped:Connect(function()
 		button.PressedImage = on
 	else
 		button.Image = on
-		button.PressedImage = on
+		button.PressedImage = off
 	end
 end)
