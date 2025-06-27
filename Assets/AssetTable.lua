@@ -46,8 +46,10 @@ AssetTable.PsychopathicFlash = {
 }
 
 AssetTable.Sounds = {
-	"Moonglitch.ogg",
 	"Glitch.ogg",
+	"Moonglitch.ogg",
+	"OChristmasTree.ogg",
+	"ONE_OF_US.ogg",
 
 	"NVButton_off.ogg",
 	"NVButton_on.ogg"
