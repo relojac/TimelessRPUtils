@@ -1,3 +1,15 @@
+--[[
+	Did you know that my middle name stands for "Abandoned?"
+	Oh, um, right... the script, sorry. (⁠╥⁠﹏⁠💫⁠)
+
+	This is my favorite button?
+	Er, not because it's useful, but...
+	It has cute kaomoji as the button Icons.
+	I know, please, shame me...
+
+	Huh? Oh, right.
+]]
+
 local genv = (getgenv and getgenv()) or shared
 
 local Settings = genv.Settings
@@ -20,7 +32,7 @@ Player.CharacterAdded:Connect(function(new)
 	Humanoid = Character:WaitForChild("Humanoid")
 end)
 
-local btn = "FaintButton"
+local btn = "FaintButton" -- Mhm!
 
 local off = Asset.get("Timeless/" .. btn .. "_off.png")
 local on = Asset.get("Timeless/" .. btn .. "_on.png")
@@ -31,7 +43,7 @@ local button = Button.new(btn, true)
 	button.Position = Positioner.get(Settings.Buttons.Faint.Position)
 
 button.MouseButton1Click:Connect(function()
-	Humanoid.PlatformStand = not Humanoid.PlatformStand
+	Humanoid.PlatformStand = not Humanoid.PlatformStand -- I'm honestly surprised it isn't called Stun or PhysicsDisabled...
 end)
 
 RunService.Stepped:Connect(function()
@@ -43,3 +55,18 @@ RunService.Stepped:Connect(function()
 		button.PressedImage = off
 	end
 end)
+
+--[[
+	Wait, it's already over?
+	Well, I'm sure you understood it anyway... T-💫
+
+	Even, if it looks like spaghetti, don't eat it.
+	Trust me.
+]]
+
+-- what do you even mean when you say that? do you actually have a point or are you just saying things?
+
+--[[
+	Oh, uhm, Ms. relojac... I. I didn't see you there.
+	I, umm...
+]]
