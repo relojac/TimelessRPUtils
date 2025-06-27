@@ -35,3 +35,11 @@ button.MouseButton1Click:Connect(function()
 		Humanoid.Health = 0
 	end
 end)
+
+RunService.Stepped:Connect(function()
+	if Humanoid.Health <= 0 then
+		button.Image = on
+	else
+		button.Image = off
+	end
+end) 
