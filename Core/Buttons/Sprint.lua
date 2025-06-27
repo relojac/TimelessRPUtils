@@ -105,6 +105,7 @@ Humanoid.StateChanged:Connect(function()
 		button.Visible = true
 	else
 		button.Visible = false
+		sprinting.Value = false
 	end
 end)
 
