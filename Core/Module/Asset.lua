@@ -18,80 +18,82 @@ local delfolder = delfolder or function() end
 local works = getsynasset and request and writefile and isfile and defile and makefolder and isfolder and delfolder
 
 if works then
-	makefolder("Timeless")
+	if not isfolder("Timeless") then
+		makefolder("Timeless")
+	end
 end
 	
-function Asset.video(url, videoName)
+function Asset.video(url, path)
 	if works then
-		if not isfile("Timeless/"..videoName) then
+		if not isfile(path) then
 			local Response, TempFile = request({Url = url, Method = 'GET'})
 			if Response.StatusCode == 200 then
-				writefile("Timeless/"..videoName, Response.Body)
+				writefile(path, Response.Body)
 			end
 		end
 
-		return getsynasset("Timeless/"..videoName) or nil
+		return getsynasset(path) or ""
 	end
 end
 
-function Asset.image(url, imageName)
+function Asset.image(url, path)
 	if works then
-		if not isfile("Timeless/"..imageName) then
+		if not isfile(path) then
 			local Response, TempFile = request({Url = url, Method = 'GET'})
 			if Response.StatusCode == 200 then
-				writefile("Timeless"..imageName, Response.Body)
+				writefile(path, Response.Body)
 			end
 		end
 
-		return getsynasset("Timeless/"..imageName) or "rbxasset://textures/ui/GuiImagePlaceholder.png"
+		return getsynasset(path) or "rbxasset://textures/ui/GuiImagePlaceholder.png"
 	end
 end
 
-function Asset.audio(url, audioName)
+function Asset.audio(url, path)
 	if works then
-		if not isfile("Timeless/"..audioName) then
+		if not isfile(path) then
 			local Response, TempFile = request({Url = url, Method = 'GET'})
 			if Response.StatusCode == 200 then
-				writefile("Timeless/"..audioName, Response.Body)
+				writefile(path, Response.Body)
 			end
 		end
 
-		return getsynasset("Timeless/"..audioName) or "rbxasset://sounds/uuhhh.mp3"
+		return getsynasset(path) or "rbxasset://sounds/uuhhh.mp3"
 	end
 end
 
 
-function Asset.write(url, assetName)
+function Asset.fromURL(url, path)
 	if works then
-		if not isfile("Timeless/"..assetName) then
-			print("attempt to download", assetName)
+		if not isfile(path) then
+			print("attempt to download", path)
 			local Response, TempFile = request({Url = url, Method = 'GET'})
 			if Response.StatusCode == 200 then
-				writefile("Timeless/"..assetName, Response.Body)
-				print("successful:", assetName, "-", getsynasset(assetName))
+				writefile(path, Response.Body)
+				print("successful:", path, "-", getsynasset(path))
 			end
 		else
-			warn(assetName, "already exists!")
+			warn(path, "already exists!")
 		end
 	end
 end
 
-function Asset.del(assetName)
+function Asset.del(path)
 	if works then
-		if isfile("Timeless/"..assetName) then
-			delfile("Timeless/"..assetName)
+		if isfile(path) then
+			delfile(path)
 		else
-			warn(assetName, "is not a valid member of workspace!")
+			warn(path, "is not a valid member of workspace!")
 		end
 	end
 end
 
-function Asset.get(asset)
+function Asset.get(path)
 	if works then
-		if isfile("Timeless/"..asset) then
-			return getsynasset("Timeless/"..asset)
+		if isfile(path) then
+			return getsynasset(path)
 		else
-			warn(asset, "is not a valid member of workspace!")
+			warn(path, "is not a valid member of workspace!")
 			return
 		end
 	end
