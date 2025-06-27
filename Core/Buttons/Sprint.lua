@@ -97,16 +97,6 @@ local function sprintStop(hum, cam)
 end
 
 
-Humanoid.StateChanged:Connect(function()
-	if Humanoid.MoveDirection.Magnitude > 0 then
-		button.Visible = true
-	else
-		button.Visible = false
-		sprinting.Value = false
-		sprintStop(Humanoid, Camera)
-	end
-end)
-
 if Toggled then
 	button.MouseButton1Click:Connect(function()
 		sprinting.Value = not sprinting.Value
@@ -129,16 +119,19 @@ else
 end
 
 RunService.RenderStepped:Connect(function()
-	if not Toggled then
+	if not sprinting.Value and Toggled then
 		button.Image = off
 		button.PressedImage = on
 	else
-		if not sprinting.Value then
-			button.Image = off
-			button.PressedImage = on
-		else
-			button.Image = on
-			button.PressedImage = off
-		end
+		button.Image = on
+		button.PressedImage = off
+	end
+
+	if Humanoid.MoveDirection.Magnitude > 0 then
+		button.Visible = true
+	else
+		button.Visible = false
+		sprinting.Value = false
+		sprintStop(Humanoid, Camera)
 	end
 end) 
