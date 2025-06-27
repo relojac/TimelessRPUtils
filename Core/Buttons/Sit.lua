@@ -26,7 +26,8 @@ local off = Asset.get("Timeless/" .. btn .. "_off.png")
 local on = Asset.get("Timeless/" .. btn .. "_on.png")
 
 local button = Button.new(btn, true)
-	button.PressedImage = ""
+	button.Image = off
+	button.PressedImage = on
 	button.Position = Positioner.get(Settings.Buttons.Sit.Position)
 
 button.MouseButton1Click:Connect(function()
@@ -38,9 +39,11 @@ button.MouseButton1Click:Connect(function()
 end)
 
 RunService.Stepped:Connect(function()
-	if not Humanoid.Sit then
+	if not Humanoid.PlatformStand then
 		button.Image = off
+		button.PressedImage = on
 	else
 		button.Image = on
+		button.PressedImage = on
 	end
 end)
