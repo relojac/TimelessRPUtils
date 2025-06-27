@@ -7,10 +7,10 @@ local Button = Module.Button
 local Positioner = Module.Positioner
 local Asset = Module.Asset
 
-local Toggled = Settings.Sprint.Toggled or false
-local IsTweened = Settings.Sprint.IsTweened or true
+local Toggled = Settings.Buttons.Sprint.Toggled or false
+local IsTweened = Settings.Buttons.print.IsTweened or true
 
-local m = Settings.Sprint.Multipliers or {}
+local m = Settings.Buttons.Sprint.Multipliers or {}
 local WSm = m.WalkSpeed or 1.5
 local FOVm = m.FieldOfView or 1.3
 
