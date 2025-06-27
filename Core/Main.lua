@@ -26,6 +26,7 @@ local TouchGui = PlayerGui:WaitForChild("TouchGui")
 local TouchControlFrame = TouchGui:WaitForChild("TouchControlFrame")
 local JumpButton = TouchControlFrame:WaitForChild("JumpButton") -- The JumpButton! You'll see how it's used later in this script.
 
+if TouchControlFrame:FindFirstChild("JumpButtonReference") then TouchControlFrame.JumpButtonReference:Destroy() end
 local JumpRef = Instance.new("Frame", TouchControlFrame) -- This will make a reference of the JumpButton. This is where all the buttons will show up if you have any.
 	JumpRef.Name = "JumpButtonReference"
 	JumpRef.BackgroundTransparency = 1
