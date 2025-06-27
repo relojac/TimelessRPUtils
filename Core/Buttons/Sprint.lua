@@ -8,7 +8,7 @@ local Positioner = Module.Positioner
 local Asset = Module.Asset
 
 local Toggled = Settings.Buttons.Sprint.Toggled or false
-local IsTweened = Settings.Buttons.print.IsTweened or true
+local IsTweened = Settings.Buttons.Sprint.IsTweened or true
 
 local m = Settings.Buttons.Sprint.Multipliers or {}
 local WSm = m.WalkSpeed or 1.5
@@ -129,9 +129,11 @@ end)
 RunService.RenderStepped:Connect(function()
 	if not sprinting.Value then
 		button.Image = off
+		task.wait()
 		button.PressedImage = on
 	else
 		button.Image = on
+		task.wait()
 		button.PressedImage = off
 	end
 end) 
