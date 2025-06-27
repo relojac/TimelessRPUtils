@@ -2,6 +2,9 @@
 > [!NOTE]
 > in case you didn't know already, this tool was made by **relojac**! you can check out my stuff [here](https://www.youtube.com/@relojac) or [here](https://www.youtube.com/@r_lojac)...
 
+> [!TIP]
+> if you'd like to report a bug or suggest a feature, you can open an Issue or Pull Request.
+
 # Timeless Roleplaying Utilities
 by the name, i think you'd know what this script is about.
 these are... utilities, meant to be executed in Roblox roleplaying games.
