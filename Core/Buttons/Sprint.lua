@@ -55,28 +55,25 @@ local button = Button.new(btn, true)
 
 local BaseWS, BaseFOV
 local blockBase = false
-RunService.RenderStepped:Connect(function()
-	if not sprinting.Value and not blockBase then
-		BaseWS = Humanoid.WalkSpeed
-		BaseFOV = Camera.FieldOfView
-	end
-end)
 
 
 local function sprintStart(hum, cam)
-	local Tween_1 = TweenService:Create(hum, info, { WalkSpeed = BaseWS*WSm })
-	local Tween_2 = TweenService:Create(cam, info, { FieldOfView = BaseFOV*FOVm })
-	
+	if not blockBase then
+		BaseWS = hum.WalkSpeed
+		BaseFOV = cam.FieldOfView
+	end
+
+	local Tween_1 = TweenService:Create(hum, info, { WalkSpeed = BaseWS * WSm })
+	local Tween_2 = TweenService:Create(cam, info, { FieldOfView = BaseFOV * FOVm })
+
+	blockBase = true
+
 	if IsTweened then
-		blockBase = true
-		
 		Tween_1:Play()
 		Tween_2:Play()
 	else
-		blockBase = true
-
-		hum.WalkSpeed = BaseWS*WSm
-		cam.FieldOfView = BaseFOV*FOVm
+		hum.WalkSpeed = BaseWS * WSm
+		cam.FieldOfView = BaseFOV * FOVm
 	end
 end
 
