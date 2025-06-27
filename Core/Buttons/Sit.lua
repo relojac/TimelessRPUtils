@@ -22,8 +22,8 @@ end)
 
 local btn = "SitButton"
 
-local off = Asset.get(btn .. "off.png")
-local on = Asset.get(btn .. "on.png")
+local off = Asset.get(btn .. "_off.png")
+local on = Asset.get(btn .. "_on.png")
 
 local button = Button.new(btn, true)
 	button.PressedImage = ""
