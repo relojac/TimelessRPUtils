@@ -63,7 +63,7 @@ function Asset.audio(url, path)
 end
 
 
-function Asset.fromURL(url, path)
+function Asset.write(url, path)
 	if works then
 		if not isfile(path) then
 			print("attempt to download", path)
