@@ -15,7 +15,7 @@ local makefolder = makefolder or function() end
 local isfolder = isfolder or function() end
 local delfolder = delfolder or function() end
 
-local works = getsynasset and request and writefile and isfile and defile and makefolder and isfolder and delfolder
+local works = getsynasset and request and writefile and isfile and delfile and makefolder and isfolder and delfolder
 
 if works then
 	if not isfolder("Timeless") then
