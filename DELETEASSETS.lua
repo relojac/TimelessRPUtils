@@ -13,6 +13,6 @@ local AssetTable = genv.AssetTable
 for name, entry in pairs(AssetTable) do
 	print("access", entry, "of AssetTable")
 	for _, v in ipairs(entry) do
-		Asset.del(v)
+		Asset.del(v, nil)
 	end
 end
