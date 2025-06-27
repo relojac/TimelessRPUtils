@@ -18,8 +18,10 @@ local Button = Module.Button
 local Positioner = Module.Positioner
 local Asset = Module.Asset
 
-local Toggled = Settings.Buttons.Sprint.Toggled or false -- This will determine whether or not the button will be Held or Toggled. Default is Held/false, if you didn't know already!
-local IsTweened = Settings.Buttons.Sprint.IsTweened or true -- Of course, this is mostly visual. But it looks smooth!
+local Toggled = Settings.Buttons.Sprint.Toggled -- This will determine whether or not the button will be Held or Toggled. Default is Held/false, if you didn't know already!
+local IsTweened = Settings.Buttons.Sprint.IsTweened -- Of course, this is mostly visual. But it looks smooth! Kind of? I don't know, she was just copying from Minecraft.
+-- hey, i was not copying from minecraft
+-- But you told me you were? :0
 
 local m = Settings.Buttons.Sprint.Multipliers or {} -- Yes, your Base WalkSpeed/Field of View will be multiplied by these values.
 local WSm = m.WalkSpeed or 1.5
