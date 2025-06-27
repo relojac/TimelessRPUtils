@@ -39,7 +39,7 @@ button.MouseButton1Click:Connect(function()
 end)
 
 RunService.Stepped:Connect(function()
-	if not Humanoid.PlatformStand then
+	if not Humanoid.Sit then
 		button.Image = off
 		button.PressedImage = on
 	else
