@@ -64,8 +64,6 @@ local function sprintStart(hum, cam)
 	local Tween_1 = TweenService:Create(hum, info, { WalkSpeed = BaseWS * WSm })
 	local Tween_2 = TweenService:Create(cam, info, { FieldOfView = BaseFOV * FOVm })
 
-	blockBase = true
-
 	if IsTweened then
 		Tween_1:Play()
 		Tween_2:Play()
