@@ -40,7 +40,7 @@ genv.Settings = {
 
 			["Multipliers"] = {
 				["WalkSpeed"] = 1.5,
-				["FieldOfView"] = 1.3
+				["FieldOfView"] = 1.15
 			}
 		},
 	},
