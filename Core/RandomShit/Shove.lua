@@ -5,9 +5,9 @@ local Player = Players.LocalPlayer
 local Character = Player.Character
 local HRP = Character:WaitForChild("HumanoidRootPart")
 
-local X = math.random(-100, 100)
-local Y = math.random(50, 100)
-local Z = math.random(-100, 100)
+local X = math.random(-30, 30)
+local Y = math.random(5, 20)
+local Z = math.random(-30, 30)
 
 local Att = HRP:WaitForChild("RootAttachment")
 local LV = Instance.new("LinearVelocity"); do
