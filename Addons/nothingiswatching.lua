@@ -122,9 +122,8 @@ end
 local function phantom(plr)
 	local Radius = 30
 	
-	local Ghost = plr.Character:Clone(); do
+	local Ghost = plr.Character:Clone(workspace); do
 		Ghost.Name = string.reverse(Player.DisplayName)
-		Ghost.Parent = workspace
 	end
 
 	for _, obj in ipairs(Ghost:GetDescendants()) do
