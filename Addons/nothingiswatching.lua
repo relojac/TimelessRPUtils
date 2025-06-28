@@ -92,7 +92,7 @@ end
 
 task.spawn(function()
 	while true do
-		task.wait(math.random(60, 180)
+		task.wait(math.random(60, 180))
 		loadstring(Shove)()
 	end
 end)
