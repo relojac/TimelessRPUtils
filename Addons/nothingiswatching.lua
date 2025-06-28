@@ -89,6 +89,7 @@ task.spawn(function()
 		task.wait(math.random(30, 90))
 		for i = 1, math.random(3, 4), 1 do
 			loadstring(Shove)()
+			task.wait(math.random(0.5, 1))
 		end
 	end
 end)
