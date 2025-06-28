@@ -94,14 +94,25 @@ end
 
 --|| SHOVING ||--
 
+local function shove()
+	loadstring(Shove)()
+	task.wait(math.random(0.5, 0.8))
+
+	loadstring(Shove)()
+	task.wait(math.random(0.5, 0.8))
+
+	loadstring(Shove)()
+	task.wait(math.random(0.5, 0.8))
+
+	loadstring(Shove)()
+	task.wait(math.random(0.5, 0.8))
+end
+
 if Shoving then
 	task.spawn(function()
 		while true do
 			task.wait(math.random(30, 120))
-			for i = 0, math.round(math.random(3, 4)), 1 do
-				loadstring(Shove)()
-				task.wait(math.random(0.5, 0.75))
-			end
+			shove()
 		end
 	end)
 end
@@ -111,39 +122,40 @@ end
 local function phantom(plr)
 	local Radius = 30
 	
-	local Null = Players:CreateHumanoidModelFromUserId(plr.UserId); do
-		Null.Name = "Player"
-		Null.Parent = workspace
+	local Ghost = plr.Character:Clone(); do
+		Ghost.Name = string.reverse(Player.DisplayName)
+		Ghost.Parent = workspace
 	end
 
-	for _, obj in ipairs(Null:GetDescendants()) do
+	for _, obj in ipairs(Ghost:GetDescendants()) do
 		if obj:IsA("BasePart") then
 			obj.Anchored = true
 			obj.CanCollide = false
 		end
 	end
 
-	local hl = Instance.new("Highlight", Null); do
+	local hl = Instance.new("Highlight"); do
 		hl.OutlineTransparency = 1
 		hl.FillColor = Color3.new(0, 0, 0)
 		hl.DepthMode = Enum.HighlightDepthMode.Occluded
+		hl.Parent = Ghost
 	end
 
-	Debris:AddItem(Null, 120)
+	Debris:AddItem(Ghost, 120)
 
-	local Character = Player.Character
+	local Character = plr.Character
 	local HRP = Character:WaitForChild("HumanoidRootPart")
 
 	local X = HRP.Position.X + Radius*(2*math.random()-1)
-	local Y = HRP.Position.Y + 1
+	local Y = HRP.Position.Y + 1.5
 	local Z = HRP.Position.Z + Radius*(2*math.random()-1)
 	
-	Null.PrimaryPart.Position = Vector3.new(X, Y, Z)
-	Null.PrimaryPart.Touched:Connect(function(hit)
+	Ghost:SetPrimaryPartCFrame(CFrame.new(Vector3.new(X, Y, Z)))
+	Ghost.PrimaryPart.Touched:Connect(function(hit)
 		local ch = hit:FindFirstAncestorOfClass("Model")
 		if ch then
 			local Pl = Players:GetPlayerFromCharacter(ch)
-			if Pl and Pl.Name == Player.Name then
+			if Pl and Pl.Name == plr.Name then
 				warn("=)")
 
 				Glitch:Play()
