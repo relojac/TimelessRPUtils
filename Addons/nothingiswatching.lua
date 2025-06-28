@@ -121,9 +121,11 @@ end
 
 local function phantom(plr)
 	local Radius = 30
-	
-	local Ghost = plr.Character:Clone(workspace); do
+
+	plr.Character.Archivable = true
+	local Ghost = plr.Character:Clone(); do
 		Ghost.Name = string.reverse(Player.DisplayName)
+		Ghost.Parent = workspace
 	end
 
 	for _, obj in ipairs(Ghost:GetDescendants()) do
@@ -135,6 +137,7 @@ local function phantom(plr)
 
 	local hl = Instance.new("Highlight"); do
 		hl.OutlineTransparency = 1
+		hl.FillTransparency = 0
 		hl.FillColor = Color3.new(0, 0, 0)
 		hl.DepthMode = Enum.HighlightDepthMode.Occluded
 		hl.Parent = Ghost
