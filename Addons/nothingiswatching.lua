@@ -123,19 +123,17 @@ end
 --|| null ||--
 
 local function phantom(plr)
-	local Radius = 25
+	local Radius = 75
 
 	plr.Character.Archivable = true
 	local Ghost = plr.Character:Clone(); do
 		Ghost.Name = ReversedDN
 		Ghost.Parent = workspace
-
-		Ghost.Humanoid.HipHeight = 2
 	end
 
 	for _, obj in ipairs(Ghost:GetDescendants()) do
 		if obj:IsA("BasePart") then
-			obj.Anchored = false
+			obj.Anchored = true
 			obj.CanCollide = false
 		end
 	end
@@ -166,7 +164,7 @@ local function phantom(plr)
 	end
 	
 	local X = HRP.Position.X + Radius * a
-	local Y = HRP.Position.Y + 2
+	local Y = HRP.Position.Y + 50
 	local Z = HRP.Position.Z + Radius * b
 	
 	Ghost:SetPrimaryPartCFrame(CFrame.new(Vector3.new(X, Y, Z)))
