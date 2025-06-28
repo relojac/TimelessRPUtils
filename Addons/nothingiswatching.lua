@@ -23,6 +23,9 @@ local SoundService = game:GetService("SoundService")
 local Player = Players.LocalPlayer
 local PlayerGui = Player:WaitForChild("PlayerGui")
 
+local DisplayName = Player.DisplayName
+local ReversedDN = string.reverse(DisplayName)
+
 --|| SOUNDS ||--
 
 local MoonglitchSource = Asset.get("Timeless/Moonglitch.ogg")
@@ -120,17 +123,19 @@ end
 --|| null ||--
 
 local function phantom(plr)
-	local Radius = 30
+	local Radius = 25
 
 	plr.Character.Archivable = true
 	local Ghost = plr.Character:Clone(); do
-		Ghost.Name = string.reverse(Player.DisplayName)
+		Ghost.Name = ReversedDN
 		Ghost.Parent = workspace
+
+		Ghost.Humanoid.HipHeight = 2
 	end
 
 	for _, obj in ipairs(Ghost:GetDescendants()) do
 		if obj:IsA("BasePart") then
-			obj.Anchored = true
+			obj.Anchored = false
 			obj.CanCollide = false
 		end
 	end
@@ -148,9 +153,21 @@ local function phantom(plr)
 	local Character = plr.Character
 	local HRP = Character:WaitForChild("HumanoidRootPart")
 
-	local X = HRP.Position.X + Radius*(2*math.random()-1)
-	local Y = HRP.Position.Y + 1.5
-	local Z = HRP.Position.Z + Radius*(2*math.random()-1)
+	local a, b
+	if math.random() == 0 then
+		a = -1
+	else
+		a = 1
+	end
+	if math.random() == 0 then
+		b = -1
+	else
+		b = 1
+	end
+	
+	local X = HRP.Position.X + Radius * a
+	local Y = HRP.Position.Y + 2
+	local Z = HRP.Position.Z + Radius * b
 	
 	Ghost:SetPrimaryPartCFrame(CFrame.new(Vector3.new(X, Y, Z)))
 	Ghost.PrimaryPart.Touched:Connect(function(hit)
@@ -161,7 +178,7 @@ local function phantom(plr)
 				warn("=)")
 
 				Glitch:Play()
-				Null:Destroy()
+				Ghost:Destroy()
 			end
 		end
 	end)
