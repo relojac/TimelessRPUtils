@@ -55,3 +55,8 @@ AssetTable.Sounds = {
 	"NVButton_off.ogg",
 	"NVButton_on.ogg"
 }
+
+AssetTable.Music = {
+	"false_calm.ogg",
+	"false_subwoofer_lullaby.ogg"
+}
