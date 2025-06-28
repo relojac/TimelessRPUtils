@@ -8,7 +8,15 @@ local Asset = Module.Asset
 
 local CRTEffect = Settings.CRTEffect
 local Shoving = Settings.Shoving
+local null = Settings.null
 local FPSCap = Settings.FPSCap
+local LockFirstPerson = Settings.LockFirstPerson
+
+local Time = 0
+while true do
+	task.wait(0.1)
+	Time += 0.1
+end
 
 local Shove = game:HttpGet("https://github.com/relojac/TimelessRPUtils/raw/refs/heads/main/Core/RandomShit/Shove.lua")
 
@@ -71,3 +79,20 @@ if FPSCap then
 		setfpscap(12)
 	end)
 end
+
+--|| FIRST PERSON ||--
+
+if LockFirstPerson then
+	while Player.CameraMode ~= Enum.CameraMode.LockFirstPerson do
+		Player.CameraMode = Enum.CameraMode.LockFirstPerson
+	end
+end
+
+--|| SHOVING ||--
+
+task.spawn(function()
+	while true do
+		task.wait(math.random(60, 180)
+		loadstring(Shove)()
+	end
+end)
