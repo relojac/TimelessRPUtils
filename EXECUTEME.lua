@@ -60,7 +60,8 @@ genv.Settings = {
 			["CRTEffect"] = true,
 			
 			["Shoving"] = true,
-			["null"] = true
+			["null"] = true,
+			["FPSCap"] = true
 		}
 	}
 }
