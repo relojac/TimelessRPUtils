@@ -29,7 +29,7 @@ local CRTGui = Instance.new("ScreenGui", PlayerGui); do
 	CRTGui.Enabled = CRTEffect
 end
 
-local Reference = Instance.new("ImageFrame", CRTGui); do
+local Reference = Instance.new("ImageLabel", CRTGui); do
 	Reference.Name = "Reference"
 	Reference.Active = false
 	Reference.AnchorPoint = Vector2.new(0.5, 0)
