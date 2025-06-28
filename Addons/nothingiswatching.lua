@@ -124,23 +124,21 @@ local function phantom(plr)
 	end
 
 	local hl = Instance.new("Highlight", Null); do
-		hl.Name = "null"
 		hl.OutlineTransparency = 1
 		hl.FillColor = Color3.new(0, 0, 0)
 		hl.DepthMode = Enum.HighlightDepthMode.Occluded
 	end
 
-	Debris:AddItem(Null, 300)
+	Debris:AddItem(Null, 120)
 
 	local Character = Player.Character
 	local HRP = Character:WaitForChild("HumanoidRootPart")
 
 	local X = HRP.Position.X + Radius*(2*math.random()-1)
-	local Y = HRP.Position.Y
+	local Y = HRP.Position.Y + 1
 	local Z = HRP.Position.Z + Radius*(2*math.random()-1)
 	
-	Null:SetPrimaryPartCFrame(CFrame.new(Vector3.new(X, Y, Z)))
-
+	Null.PrimaryPart.Position = Vector3.new(X, Y, Z)
 	Null.PrimaryPart.Touched:Connect(function(hit)
 		local ch = hit:FindFirstAncestorOfClass("Model")
 		if ch then
