@@ -9,18 +9,36 @@ local Asset = Module.Asset
 local CRTEffect = Settings.CRTEffect
 local Shoving = Settings.Shoving
 local null = Settings.null
-local FPSCap = Settings.FPSCap
 local LockFirstPerson = Settings.LockFirstPerson
 
 local Shove = game:HttpGet("https://github.com/relojac/TimelessRPUtils/raw/refs/heads/main/Core/RandomShit/Shove.lua")
 
 
 local Debris = game:GetService("Debris")
+local Lighting = game:GetService("Lighting")
 local Players = game:GetService("Players")
 local RunService = game:GetService("RunService")
+local SoundService = game:GetService("SoundService")
 
 local Player = Players.LocalPlayer
 local PlayerGui = Player:WaitForChild("PlayerGui")
+
+--|| SOUNDS ||--
+
+local MoonglitchSource = Asset.get("Timeless/Moonglitch.ogg")
+local GlitchSource = Asset.get("Timeless/Glitch.ogg")
+
+local Moonglitch = Instance.new("Sound", SoundService); do
+	Moonglitch.Name = "Moonglitch"
+	Moonglitch.Volume = 1.5
+	Moonglitch.SoundId = MoonglitchSource
+end
+
+local Glitch = Instance.new("Sound", SoundService); do
+	Glitch.Name = "Glitch"
+	Glitch.Volume = 2
+	Glitch.SoundId = GlitchSource
+end
 
 --|| CRT EFFECT ||--
 
@@ -66,14 +84,6 @@ local right = border:Clone(); do
 	right.Position = UDim2.fromScale(1, 0)
 end
 
---|| FPS ||--
-
-if FPSCap then
-	RunService.RenderStepped:Connect(function()
-		setfpscap(12)
-	end)
-end
-
 --|| FIRST PERSON ||--
 
 if LockFirstPerson then
@@ -84,12 +94,75 @@ end
 
 --|| SHOVING ||--
 
-task.spawn(function()
-	while true do
-		task.wait(math.random(30, 90))
-		for i = 1, math.random(3, 4), 1 do
-			loadstring(Shove)()
-			task.wait(math.random(0.5, 1))
+if Shoving then
+	task.spawn(function()
+		while true do
+			task.wait(math.random(30, 120))
+			for i = 0, math.round(math.random(3, 4)), 1 do
+				loadstring(Shove)()
+				task.wait(math.random(0.5, 0.75))
+			end
+		end
+	end)
+end
+
+--|| null ||--
+
+local function phantom(plr)
+	local Radius = 30
+	
+	local Null = Players:CreateHumanoidModelFromUserId(plr.UserId); do
+		Null.Name = "Player"
+		Null.Parent = workspace
+	end
+
+	for _, obj in ipairs(Null:GetDescendants()) do
+		if obj:IsA("BasePart") then
+			obj.Anchored = true
+			obj.CanCollide = false
 		end
 	end
-end)
+
+	local hl = Instance.new("Highlight", Null); do
+		hl.Name = "null"
+		hl.OutlineTransparency = 1
+		hl.FillColor = Color3.new(0, 0, 0)
+		hl.DepthMode = Enum.HighlightDepthMode.Occluded
+	end
+
+	Debris:AddItem(Null, 300)
+
+	local Character = Player.Character
+	local HRP = Character:WaitForChild("HumanoidRootPart")
+
+	local X = HRP.Position.X + Radius*(2*math.random()-1)
+	local Y = HRP.Position.Y
+	local Z = HRP.Position.Z + Radius*(2*math.random()-1)
+	
+	Null:SetPrimaryPartCFrame(Vector3.new(X, Y, Z))
+
+	Null.PrimaryPart.Touched:Connect(function(hit)
+		local ch = hit:FindFirstAncestorOfClass("Model")
+		if ch then
+			local Pl = Players:GetPlayerFromCharacter(ch)
+			if Pl and Pl.Name == Player.Name then
+				warn("=)")
+
+				Glitch:Play()
+				Null:Destroy()
+			end
+		end
+	end)
+end
+
+if null then 
+	task.spawn(function()
+		while true do
+			task.wait(5)
+			phantom(Player)
+		end
+	end)
+end
+
+--|| RENDER DISTANCE ||--
+
