@@ -61,3 +61,4 @@ if Settings.Buttons.Sit.Enabled then loadstring(game:HttpGet("https://raw.github
 --|| ADDONS ||--
 
 if Settings.Addons.nothingiswatching.Enabled then loadstring(game:HttpGet("https://raw.githubusercontent.com/relojac/TimelessRPUtils/refs/heads/main/Addons/nothingiswatching.lua"))() end
+if Settings.Addons.LimbsFirstPerson then loadstring(game:HttpGet("https://raw.githubusercontent.com/relojac/TimelessRPUtils/refs/heads/main/Addons/LimbsFirstPerson.lua"))() end
