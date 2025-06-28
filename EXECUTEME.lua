@@ -54,7 +54,13 @@ genv.Settings = {
 	},
 
 	["Addons"] = {
-		["Psychopathic"] = false
+		["nothingiswatching"] = {
+			["Enabled"] = false,
+			
+			["CRTEffect"] = true,
+			
+			["Shoving"] = true,
+			["null"] = true
 	}
 }
 
