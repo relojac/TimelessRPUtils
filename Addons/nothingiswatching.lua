@@ -87,6 +87,8 @@ end
 task.spawn(function()
 	while true do
 		task.wait(math.random(60, 180))
-		loadstring(Shove)()
+		for i = 1, math.random(3, 4), 1 do
+			loadstring(Shove)()
+		end
 	end
 end)
