@@ -139,7 +139,7 @@ local function phantom(plr)
 	local Y = HRP.Position.Y
 	local Z = HRP.Position.Z + Radius*(2*math.random()-1)
 	
-	Null:SetPrimaryPartCFrame(Vector3.new(X, Y, Z))
+	Null:SetPrimaryPartCFrame(CFrame.new(Vector3.new(X, Y, Z)))
 
 	Null.PrimaryPart.Touched:Connect(function(hit)
 		local ch = hit:FindFirstAncestorOfClass("Model")
