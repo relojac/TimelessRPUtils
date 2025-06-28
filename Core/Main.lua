@@ -59,3 +59,5 @@ if Settings.Buttons.Sit.Enabled then loadstring(game:HttpGet("https://raw.github
 if Settings.Buttons.Sit.Enabled then loadstring(game:HttpGet("https://raw.githubusercontent.com/relojac/TimelessRPUtils/refs/heads/main/Core/Buttons/Sprint.lua"))() end
 
 --|| ADDONS ||--
+
+if Settings.Addons.nothingiswatching.Enabled then loadstring(game:HttpGet("https://raw.githubusercontent.com/relojac/TimelessRPUtils/refs/heads/main/Addons/nothingiswatching.lua"))() end
