@@ -22,9 +22,22 @@ local SoundService = game:GetService("SoundService")
 
 local Player = Players.LocalPlayer
 local PlayerGui = Player:WaitForChild("PlayerGui")
+local Camera = workspace.CurrentCamera
+local Character = Player.Character or Player.CharacterAdded:Wait()
+
+Player.CharacterAdded:Connect(function(char)
+	Character = char or Player.Character
+	Camera = workspace.CurrentCamera
+end) 
 
 local DisplayName = Player.DisplayName
 local ReversedDN = string.reverse(DisplayName)
+
+local castParams = RaycastParams.new(); do
+	castParams.FilterDescendantsInstances = { Character }
+end
+
+local cast = workspace:Raycast(Camera.CFrame.Position, Camera.CFrame.LookVector * 1000, castParams)
 
 --|| SOUNDS ||--
 
