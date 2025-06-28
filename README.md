@@ -1,8 +1,12 @@
 # READ ME FIRST!
 there are a few concerns about safety like malware and such, especially with the **Infinite Yield** plugin injection with the *nothingiswatching* Addon.
+
 this is exactly the reason why the entire script with its libraries and APIs, as well as the IY plugin and whatever assets the script might use are all open-source and found *right here*.
+
 i trust you to be a competent human being and know what you're executing before you execute it; **read the code**.
+
 this is also the reason why some features can be disabled, and that includes the IY plugin.
+
 thanks.
 
 # hello!
