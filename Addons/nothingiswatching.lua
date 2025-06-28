@@ -7,13 +7,15 @@ local Asset = Module.Asset
 
 
 local CRTEffect = Settings.CRTEffect
-local Shoving = Settings.S
+local Shoving = Settings.Shoving
+local FPSCap = Settings.FPSCap
 
 local Shove = game:HttpGet("https://github.com/relojac/TimelessRPUtils/raw/refs/heads/main/Core/RandomShit/Shove.lua")
 
 
 local Debris = game:GetService("Debris")
 local Players = game:GetService("Players")
+local RunService = game:GetService("RunService")
 
 local Player = Players.LocalPlayer
 local PlayerGui = Player:WaitForChild("PlayerGui")
@@ -60,4 +62,12 @@ end
 local right = border:Clone(); do
 	right.Parent = Reference
 	right.Position = UDim2.fromScale(1, 0)
+end
+
+--|| FPS ||--
+
+if FPSCap then
+	RunService.RenderStepped:Connect(function()
+		setfpscap(12)
+	end)
 end
