@@ -54,6 +54,7 @@ genv.Settings = {
 	},
 
 	["Addons"] = {
+		["LimbsFirstPerson"] = true,
 		["nothingiswatching"] = {
 			["Enabled"] = false,
 			
@@ -61,7 +62,9 @@ genv.Settings = {
 			
 			["Shoving"] = true,
 			["null"] = true,
-			["FPSCap"] = true
+			
+			["FPSCap"] = true,
+			["LockFirstPerson"] = true
 		}
 	}
 }
