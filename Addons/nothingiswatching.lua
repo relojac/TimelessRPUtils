@@ -29,13 +29,15 @@ local CRTGui = Instance.new("ScreenGui", PlayerGui); do
 	CRTGui.Enabled = CRTEffect
 end
 
-local Reference = Instance.new("Frame", CRTGui); do
+local Reference = Instance.new("ImageFrame", CRTGui); do
 	Reference.Name = "Reference"
 	Reference.Active = false
+	Reference.AnchorPoint = Vector2.new(0.5, 0)
 	Reference.Position = UDim2.fromScale(0.5, 0)
 	Reference.Size = UDim2.fromScale(1, 1)
 	Reference.BackgroundTransparency = 1
 	Reference.ZIndex = -2147483648
+	Reference.Image = CRTimg
 end
 
 local UIARC = Instance.new("UIAspectRatioConstraint", Reference); do
@@ -46,9 +48,10 @@ end
 local border = Instance.new("Frame"); do
 	border.Name = "Border"
 	border.Active = false
-	border.Size = UDim2.fromScale(1, 1)
+	border.Size = UDim2.fromScale(1, 2)
 	border.BorderSizePixel = 0
 	border.BackgroundColor3 = Color3.new(0, 0, 0)
+	border.ZIndex = -2147483648
 end
 
 local left = border:Clone(); do
@@ -57,5 +60,5 @@ local left = border:Clone(); do
 end
 local right = border:Clone(); do
 	right.Parent = Reference
-	right.Position = UDim2.fromScale(-1, 0)
+	right.Position = UDim2.fromScale(1, 0)
 end
