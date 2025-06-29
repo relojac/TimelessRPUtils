@@ -289,7 +289,7 @@ local function Null(plr)
 					end
 				end
 
-				for _, v in ipairs(workspace:GetChildren())
+				for _, v in ipairs(workspace:GetChildren()) do
 					if v:IsA("Model") and v.Name == nullPlr.Name then
 						v:Destroy()
 					end
