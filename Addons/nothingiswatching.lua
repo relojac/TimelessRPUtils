@@ -217,7 +217,7 @@ local function Null(plr)
 			local r = 20
 
 			if d <= r then
-				-- || RAYCAST CHECK
+				-- || RAYCAST CHECK FIRST
 				local origin = Camera.CFrame.Position
 				local direction = (nullPlr.PrimaryPart.Position - origin).Unit * 999
 				local rayParams = RaycastParams.new(); do
@@ -227,12 +227,12 @@ local function Null(plr)
 
 				local result = workspace:Raycast(origin, direction, rayParams)
 
-				if result and result.Instance then
-					-- obstructed
+				if result and not nullPlr:IsAncestorOf(result.Instance) then
+					-- Something else is in the way of the Player's view.
 					return
 				end
 
-				-- not obstructed, continue
+				-- There's no obstruction, so continue. 
 				stareLoop:Disconnect()
 				loop:Disconnect()
 			
