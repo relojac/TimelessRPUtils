@@ -242,8 +242,8 @@ local function Null(plr)
 
 			if d <= r then
 				--|| RAYCAST CHECK FIRST
-				local origin = Camera.CFrame.Position
-				local direction = (nullPlr.PrimaryPart.Position - origin).Unit * 999
+				local origin = workspace.CurrentCamera.CFrame.Position
+				local direction = (nullPlr.PrimaryPart.Position - origin).Unit * 10000
 				local rayParams = RaycastParams.new(); do
 					rayParams.FilterDescendantsInstances = {nullPlr, ch}
 					rayParams.FilterType = Enum.RaycastFilterType.Blacklist
@@ -256,7 +256,7 @@ local function Null(plr)
 					return
 				end
 
-				-- There's no obstruction, so continue. 
+				-- There's no obstruction, so continue
 				stareLoop:Disconnect()
 				loop:Disconnect()
 			
