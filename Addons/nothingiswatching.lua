@@ -31,7 +31,54 @@ local Character = Player.Character or Player.CharacterAdded:Wait()
 Player.CharacterAdded:Connect(function(char)
 	Character = char
 	Camera = workspace.CurrentCamera
-end) 
+end)
+
+--|| NOSTALGIA ||--
+
+local amb = Color3.new(0.5, 0.5, 0.5)
+if Nostalgia then
+	for _, child in ipairs(Lighting:GetDescendants()) do
+		if child:IsA("PostEffect") or v:IsA("Sky") or v:IsA("Atmosphere") then
+			child:Destroy()
+		end
+	end
+	
+	Lighting.GlobalShadows = false
+
+	Lighting.Ambient = amb
+	Lighting.OutdoorAmbient = amb
+	Lighting.ColorShift_Top = amb
+	Lighting.ColorShift_Bottom = amb
+
+	Lighting.Technology = Enum.Technology.Voxel
+
+	Lighting.EnvironmentSpecularScale = 0
+	Lighting.EnvironmentDiffuseScale = 1
+
+	Lighting.ShadowSoftness = 0
+	Lighting.ExposureCompensation = 0
+	Lighting.Brightness = 1
+
+	local sky_bk = Asset.get("Timeless/null_plainsky512_bk.jpg")
+	local sky_dn = Asset.get("Timeless/null_plainsky512_dn.jpg")
+	local sky_up = Asset.get("Timeless/null_plainsky512_up.jpg")
+	local sky_rt = Asset.get("Timeless/null_plainsky512_rt.jpg")
+	local sky_lf = Asset.get("Timeless/null_plainsky512_lf.jpg")
+	local sky_ft = Asset.get("Timeless/null_plainsky512_ft.jpg")
+	local Sun = Asset.get("Timeless/Sun.jpg")
+	local Moon = Asset.get("Timeless/Moon.png")
+	local Sky = Instance.new("Sky", Lighting); do
+		Sky.SkyboxBk = sky_bk
+		Sky.SkyboxDn = sky_dn
+		Sky.SkyboxFt = sky_ft
+		Sky.SkyboxLf = sky_lf
+		Sky.SkyboxRt = sky_rt
+		Sky.SkyboxUp = sky_up
+
+		Sky.MoonTextureId = Moon
+		Sky.SunTextureId = Sun
+	end
+end
 
 --|| SOUNDS ||--
 
