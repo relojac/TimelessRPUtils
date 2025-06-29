@@ -285,7 +285,7 @@ local function Null(plr)
 						plr.CameraMinZoomDistance = 10
 						plr.CameraMaxZoomDistance = 10
 						task.wait()
-						ch.Humanoid.Health = 0
+						plr.Character:WaitForChild("Humanoid").Health = 0
 
 						task.wait(Players.RespawnTime)
 						plr.CameraMode = Enum.CameraMode.LockFirstPerson
