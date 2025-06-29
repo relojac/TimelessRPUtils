@@ -187,8 +187,8 @@ local function Null(plr)
 
 	Debris:AddItem(nullPlr, 180)
 
-	local Character = plr.Character
-	local HRP = Character:FindFirstChild("HumanoidRootPart")
+	local ch = plr.Character
+	local HRP = ch:FindFirstChild("HumanoidRootPart")
 
 	local function getSafeSpawnPosition()
 		local attempts = 0
@@ -241,11 +241,11 @@ local function Null(plr)
 			local r = 20
 
 			if d <= r then
-				-- || RAYCAST CHECK FIRST
+				--|| RAYCAST CHECK FIRST
 				local origin = Camera.CFrame.Position
 				local direction = (nullPlr.PrimaryPart.Position - origin).Unit * 999
 				local rayParams = RaycastParams.new(); do
-					rayParams.FilterDescendantsInstances = {nullPlr, Player.Character}
+					rayParams.FilterDescendantsInstances = {nullPlr, plr.Character}
 					rayParams.FilterType = Enum.RaycastFilterType.Blacklist
 				end
 
@@ -285,7 +285,7 @@ local function Null(plr)
 						plr.CameraMinZoomDistance = 10
 						plr.CameraMaxZoomDistance = 10
 						task.wait()
-						Character.Humanoid.Health = 0
+						ch.Humanoid.Health = 0
 
 						task.wait(Players.RespawnTime)
 						plr.CameraMode = Enum.CameraMode.LockFirstPerson
@@ -296,7 +296,7 @@ local function Null(plr)
 					Glitch:Play()
 					NullKill:Play()
 
-					for _, v in ipairs(Character:GetDescendants()) do
+					for _, v in ipairs(ch:GetDescendants()) do
 						if v:IsA("BasePart") then
 							v.CanCollide = false
 							v.AssemblyLinearVelocity = Vector3.new(math.random(100, 200), 200, math.random(100, 200))
