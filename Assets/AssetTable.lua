@@ -67,6 +67,8 @@ AssetTable.Music = {
 }
 
 AssetTable.Sky = {
+	"null_plainsky512_bk.jpg,
+	"null_plainsky512_dn.jpg",
 	"null_plainsky512_ft.jpg",
 	"null_plainsky512_lf.jpg",
 	"null_plainsky512_rt.jpg",
