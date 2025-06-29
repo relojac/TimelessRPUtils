@@ -24,6 +24,8 @@ local RunService = game:GetService("RunService")
 local SoundService = game:GetService("SoundService")
 local CoreGui = game:GetService("CoreGui")
 
+local Terrain = workspace.Terrain
+
 local Player = Players.LocalPlayer
 local PlayerGui = Player:WaitForChild("PlayerGui")
 local Camera = workspace.CurrentCamera
@@ -40,6 +42,9 @@ local amb = Color3.new(0.5, 0.5, 0.5)
 if Nostalgia then
 	for _, v in ipairs(Lighting:GetChildren()) do
 		v:Destroy()
+	end
+	for _, v in ipairs(workspace.Terrain:GetDescendants()) do
+		if v:IsA("Clouds") then v:Destroy() end
 	end
 	
 	Lighting.GlobalShadows = false
