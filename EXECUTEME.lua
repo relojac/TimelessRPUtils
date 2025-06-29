@@ -59,6 +59,7 @@ genv.Settings = {
 			["Enabled"] = false,
 			
 			["CRTEffect"] = true,
+			["Nostalgia"] = true,
 			
 			["Shoving"] = true,
 			["null"] = true,
