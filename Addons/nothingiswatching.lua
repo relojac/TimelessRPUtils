@@ -196,7 +196,10 @@ local function Null(plr)
 	
 	nullPlr:PivotTo(CFrame.new(Vector3.new(X, Y, Z)))
 
-	local stareLoop = RunService.RenderStepped:Connect(function()
+	local stareLoop
+	local loop
+	
+	stareLoop = RunService.RenderStepped:Connect(function()
 		local nPos = nullPlr.PrimaryPart.Position
 		local tPos = HRP.Position
 
@@ -205,7 +208,7 @@ local function Null(plr)
 
 		nullPlr:PivotTo(newCF)
 	end) 
-	local loop = RunService.RenderStepped:Connect(function()
+	loop = RunService.RenderStepped:Connect(function()
 		local Point, onScreen = workspace.CurrentCamera:WorldToViewportPoint(nullPlr.PrimaryPart.Position)
 
 		if onScreen then
@@ -221,7 +224,7 @@ local function Null(plr)
 
 					warn("            =)")
 				else
-					warn("I see you")
+					warn("You will become one of us.")
 			
 					SFGui.Enabled = true
 
