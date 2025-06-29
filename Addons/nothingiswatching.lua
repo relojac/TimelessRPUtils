@@ -303,7 +303,7 @@ local function Null(plr)
 						end
 					end
 					for _, v in ipairs(workspace:GetChildren()) do
-						if v:IsA("Model") and v.Name = "PlayerIsmissingUserId" then
+						if v:IsA("Model") and v.Name == "PlayerIsmissingUserId" then
 							v:Destroy()
 						end
 					end
