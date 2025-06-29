@@ -30,7 +30,7 @@ local Camera = workspace.CurrentCamera
 local Character = Player.Character or Player.CharacterAdded:Wait()
 
 Player.CharacterAdded:Connect(function(char)
-	Character = char or Player.Character
+	Character = char
 	Camera = workspace.CurrentCamera
 end) 
 
@@ -156,10 +156,13 @@ local YouWill = Instance.new("Sound", SoundService); do
 end
 
 local function Null(plr)
+	local ch = plr.Character or plr.CharacterAdded:Wait()
+	local HRP = ch:WaitForChild("HumanoidRootPart")
+	
 	local Radius = 200
 
-	plr.Character.Archivable = true
-	local nullPlr = plr.Character:Clone(); do
+	ch.Archivable = true
+	local nullPlr = ch:Clone(); do
 		nullPlr.Name = "PlayerIsmissingUserId"
 		nullPlr.Humanoid.DisplayName = "PlayerIsmissingUserId"
 		nullPlr.Parent = workspace
@@ -186,9 +189,6 @@ local function Null(plr)
 	local Center = workspace.CurrentCamera.ViewportSize / 2
 
 	Debris:AddItem(nullPlr, 180)
-
-	local ch = plr.Character
-	local HRP = ch:FindFirstChild("HumanoidRootPart")
 
 	local function getSafeSpawnPosition()
 		local attempts = 0
