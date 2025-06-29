@@ -159,7 +159,7 @@ local function Null(plr)
 	local ch = plr.Character or plr.CharacterAdded:Wait()
 	local HRP = ch:WaitForChild("HumanoidRootPart")
 	
-	local Radius = 200
+	local Radius = 125
 
 	ch.Archivable = true
 	local nullPlr = ch:Clone(); do
@@ -243,9 +243,9 @@ local function Null(plr)
 			if d <= r then
 				--|| RAYCAST CHECK FIRST
 				local origin = workspace.CurrentCamera.CFrame.Position
-				local direction = (nullPlr.PrimaryPart.Position - origin).Unit * 2000
+				local direction = (nullPlr.PrimaryPart.Position - origin).Unit * 1000
 				local rayParams = RaycastParams.new(); do
-					rayParams.FilterDescendantsInstances = {nullPlr, ch}
+					rayParams.FilterDescendantsInstances = {ch}
 					rayParams.FilterType = Enum.RaycastFilterType.Blacklist
 				end
 
