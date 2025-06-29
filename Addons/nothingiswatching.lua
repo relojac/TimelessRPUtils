@@ -163,6 +163,8 @@ local function Null(plr)
 		nullPlr.Humanoid.DisplayName = "PlayerIsmissingUserId"
 		nullPlr.Parent = workspace
 		nullPlr.PrimaryPart = nullPlr.HumanoidRootPart
+
+		nullPlr:FindFirstChild("Animate"):Delete()
 	end -- Here I am.
 
 	for _, obj in ipairs(nullPlr:GetDescendants()) do
@@ -185,23 +187,33 @@ local function Null(plr)
 	Debris:AddItem(nullPlr, 120)
 
 	local Character = plr.Character
-	local HRP = Character:WaitForChild("HumanoidRootPart")
+	local HRP = Character:FindFirstChild("HumanoidRootPart")
 
 	local angle = math.random() * 2 * math.pi
 	local X = HRP.Position.X + math.cos(angle) * Radius
 	local Y = HRP.Position.Y + 50
 	local Z = HRP.Position.Z + math.sin(angle) * Radius
 	
-	nullPlr:SetPrimaryPartCFrame(CFrame.new(Vector3.new(X, Y, Z)))
+	nullPlr:PivotTo(CFrame.new(Vector3.new(X, Y, Z)))
 
+	local stareLoop = RunService.RenderStepped:Connect(function()
+		local nPos = nullPlr.PrimaryPart.Position
+		local tPos = HRP.Position
+
+		local modTPos = Vector3.new(tPos.X, nPos.Y, tPos.Z)
+		local newCF = CFrame.new(nPos, modTPos)
+
+		nullPlr:PivotTo(newCF)
+	end) 
 	local loop = RunService.RenderStepped:Connect(function()
 		local Point, onScreen = workspace.CurrentCamera:WorldToViewportPoint(nullPlr.PrimaryPart.Position)
 
 		if onScreen then
-			local d = Vector2.new(Point.X, Point.Y) - Center.Magnitude
-			local r = 100
+			local d = (Vector2.new(Point.X, Point.Y) - Center).Magnitude
+			local r = 150
 
 			if d <= r then
+				stareLoop:Disconnect()
 				loop:Disconnect()
 				if math.random() >= 0.25 then
 					nullPlr:Destroy()
