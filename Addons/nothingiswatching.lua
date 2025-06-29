@@ -184,7 +184,7 @@ local function Null(plr)
 
 	local Center = workspace.CurrentCamera.ViewportSize / 2
 
-	Debris:AddItem(nullPlr, 120)
+	Debris:AddItem(nullPlr, 180)
 
 	local Character = plr.Character
 	local HRP = Character:FindFirstChild("HumanoidRootPart")
@@ -213,7 +213,7 @@ local function Null(plr)
 
 		if onScreen then
 			local d = (Vector2.new(Point.X, Point.Y) - Center).Magnitude
-			local r = 150
+			local r = 50
 
 			if d <= r then
 				stareLoop:Disconnect()
@@ -225,19 +225,19 @@ local function Null(plr)
 					warn("            =)")
 				else
 					warn("You will become one of us.")
-			
-					SFGui.Enabled = true
 
 					nullPlr:Destroy()
-			
-					Glitch:Play()
 
-					task.wait(0.75)
-					SFGui.Enabled = false
+					task.spawn(function()
+						SFGui.Enabled = true
+						task.wait(0.1)
+						SFGui.Enabled = false
+					end) 
 
 					Character.Humanoid.Health = 0
-					NullKill:Play() 
-					YouWill:Play()
+					
+					Glitch:Play()
+					NullKill:Play()
 
 					for _, v in ipairs(Character:GetDescendants()) do
 						if v:IsA("BasePart") then
