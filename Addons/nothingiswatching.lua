@@ -214,8 +214,25 @@ local function Null(plr)
 			local r = 20
 
 			if d <= r then
+				-- || RAYCAST CHECK
+				local origin = Camera.CFrame.Position
+				local direction = (nullPlr.PrimaryPart.Position - origin).Unit * 999
+				local rayParams = RaycastParams.new(); do
+					rayParams.FilterDescendantsInstances = {nullPlr, Player.Character}
+					rayParams.FilterType = Enum.RaycastFilterType.Blacklist
+				end
+
+				local result = workspace:Raycast(origin, direction, rayParams)
+
+				if result and result.Instance then
+					-- obstructed
+					return
+				end
+
+				-- not obstructed, continue
 				stareLoop:Disconnect()
 				loop:Disconnect()
+			
 				if math.random() >= 0.25 then
 					nullPlr:Destroy()
 					Glitch:Play()
@@ -235,7 +252,7 @@ local function Null(plr)
 
 					local minzoom = plr.CameraMinZoomDistance
 					local maxzoom = plr.CameraMaxZoomDistance
-					
+				
 					task.spawn(function()
 						plr.CameraMode = Enum.CameraMode.Classic
 						plr.CameraMinZoomDistance = 10
@@ -248,14 +265,14 @@ local function Null(plr)
 						plr.CameraMinZoomDistance = minzoom
 						plr.CameraMaxZoomDistance = maxzoom
 					end)
-					
+
 					Glitch:Play()
 					NullKill:Play()
 
 					for _, v in ipairs(Character:GetDescendants()) do
 						if v:IsA("BasePart") then
 							v.CanCollide = false
-							v.AssemblyLinearVelocity = Vector3.new( math.random(100, 200), 200, math.random(100, 200) )
+							v.AssemblyLinearVelocity = Vector3.new(math.random(100, 200), 200, math.random(100, 200))
 						end
 					end
 				end
