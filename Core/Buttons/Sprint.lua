@@ -67,7 +67,7 @@ local btn = "SprintButton"
 local off = Asset.get("Timeless/" .. btn .. "_off.png")
 local on = Asset.get("Timeless/" .. btn .. "_on.png")
 
-local button = Button.new(btn, false)
+local button = Button.new(btn, true)
 	button.Image = off
 	button.PressedImage = on
 	button.Position = Positioner.get(Settings.Buttons.Sprint.Position)
