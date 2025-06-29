@@ -243,7 +243,7 @@ local function Null(plr)
 			if d <= r then
 				--|| RAYCAST CHECK FIRST
 				local origin = workspace.CurrentCamera.CFrame.Position
-				local direction = (nullPlr.PrimaryPart.Position - origin).Unit * 30000
+				local direction = (nullPlr.PrimaryPart.Position - origin).Unit * 2000
 				local rayParams = RaycastParams.new(); do
 					rayParams.FilterDescendantsInstances = {nullPlr, ch}
 					rayParams.FilterType = Enum.RaycastFilterType.Blacklist
