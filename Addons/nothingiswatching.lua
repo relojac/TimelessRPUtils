@@ -27,14 +27,13 @@ local PlayerGui = Player:WaitForChild("PlayerGui")
 local Camera = workspace.CurrentCamera
 local Character = Player.Character or Player.CharacterAdded:Wait()
 
+local castParams = RaycastParams.new()
+
 Player.CharacterAdded:Connect(function(char)
 	Character = char or Player.Character
 	Camera = workspace.CurrentCamera
-end) 
-
-local castParams = RaycastParams.new(); do
 	castParams.FilterDescendantsInstances = { Character }
-end
+end) 
 
 --|| SOUNDS ||--
 
