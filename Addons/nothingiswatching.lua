@@ -266,7 +266,7 @@ if null then
 	task.spawn(function()
 		while true do
 			task.wait(5) -- Hello this cooldown is a placeholder it'll be random later I think maybe if I don't forget or something idk Don't Forget deltarune reference okay
-			if Player.Character and Player.Character:WaitForChild("Humanoid").Health > 0 them
+			if Player.Character and Player.Character:WaitForChild("Humanoid").Health > 0 then
 				Null(Player)
 			end
 		end
