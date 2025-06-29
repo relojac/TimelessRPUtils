@@ -198,7 +198,8 @@ local function Null(plr)
 	local Z = HRP.Position.Z + math.sin(angle) * Radius
 	
 	nullPlr:SetPrimaryPartCFrame(CFrame.new(Vector3.new(X, Y, Z)))
-	if cast and cast.Instance and cast.Instance == nullPlr.PrimaryPart then
+	local works = cast and cast.Instance and (cast.Instance == nullPlr.PrimaryPart or cast.Instance == nullPlr.Head)
+	if works then
 		loop:Disconnect()
 		if math.random() >= 0.05 then
 			nullPlr:Destroy()
@@ -206,6 +207,8 @@ local function Null(plr)
 
 			warn("            =)")
 		else
+			warn("I see you")
+			
 			SFGui.Enabled = true
 
 			nullPlr:Destroy()
