@@ -164,7 +164,7 @@ local function Null(plr)
 		nullPlr.Parent = workspace
 		nullPlr.PrimaryPart = nullPlr.HumanoidRootPart
 
-		nullPlr:FindFirstChild("Animate"):Delete()
+		nullPlr:FindFirstChild("Animate"):Destroy()
 	end -- Here I am.
 
 	for _, obj in ipairs(nullPlr:GetDescendants()) do
