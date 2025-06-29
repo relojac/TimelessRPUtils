@@ -65,3 +65,13 @@ AssetTable.Music = {
 	"false_calm.ogg",
 	"false_subwoofer_lullaby.ogg"
 }
+
+AssetTable.Sky = {
+	"null_plainsky512_ft.jpg",
+	"null_plainsky512_lf.jpg",
+	"null_plainsky512_rt.jpg",
+	"null_plainsky512_up.jpg",
+
+	"moon.png",
+	"sun.jpg"
+}
