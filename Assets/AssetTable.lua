@@ -55,7 +55,10 @@ AssetTable.Sounds = {
 	"ONE_OF_US.ogg",
 
 	"NVButton_off.ogg",
-	"NVButton_on.ogg"
+	"NVButton_on.ogg",
+
+	"Jumpscare1.ogg",
+	"Jumpscare2.ogg"
 }
 
 AssetTable.Music = {
