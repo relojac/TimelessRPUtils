@@ -327,8 +327,6 @@ local function Null(plr)
 					plr.CameraMaxZoomDistance = maxzoom
 				end)
 
-				NullKill:Play()
-
 				for _, v in ipairs(ch:GetDescendants()) do
 					if v:IsA("BasePart") then
 						v:SetNetworkOwner(plr)
@@ -336,6 +334,10 @@ local function Null(plr)
 						v.AssemblyLinearVelocity = Vector3.new(math.random(-100, 100), 200, math.random(-100, 100))
 					end
 				end
+
+				Player.Character:WaitForChild("Humanoid").Health = 0
+
+				NullKill:Play()
 
 				for _, v in ipairs(workspace:GetChildren()) do
 					if v:IsA("Model") and v.Name == nullPlr.Name then
