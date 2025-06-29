@@ -69,6 +69,8 @@ if Nostalgia then
 	local Sun = Asset.get("Timeless/Sun.jpg")
 	local Moon = Asset.get("Timeless/Moon.png")
 	local Sky = Instance.new("Sky", Lighting); do
+		Sky.Name = "Classic"
+		
 		Sky.SkyboxBk = sky_bk
 		Sky.SkyboxDn = sky_dn
 		Sky.SkyboxFt = sky_ft
