@@ -190,12 +190,36 @@ local function Null(plr)
 	local Character = plr.Character
 	local HRP = Character:FindFirstChild("HumanoidRootPart")
 
-	local angle = math.random() * 2 * math.pi
-	local X = HRP.Position.X + math.cos(angle) * Radius
-	local Y = HRP.Position.Y + 50
-	local Z = HRP.Position.Z + math.sin(angle) * Radius
-	
-	nullPlr:PivotTo(CFrame.new(Vector3.new(X, Y, Z)))
+	local function getSafeSpawnPosition()
+		local attempts = 0
+		while attempts < 10 do
+			attempts += 1
+
+			local angle = math.random() * 2 * math.pi
+			local distance = Radius
+			local offset = Vector3.new(math.cos(angle) * distance, 50, math.sin(angle) * distance)
+			local spawnPos = HRP.Position + offset
+
+			local screenPoint, onScreen = Camera:WorldToViewportPoint(spawnPos)
+			if not onScreen then
+				return spawnPos
+			end
+
+			local screenCenter = workspace.CurrentCamera.ViewportSize / 2
+			local dist = (Vector2.new(screenPoint.X, screenPoint.Y) - screenCenter).Magnitude
+
+			if dist > 250 then
+				return spawnPos
+			end
+		end
+
+		-- fallback: just spawn far behind the player atp
+		local backVec = -Camera.CFrame.LookVector * Radius
+		return HRP.Position + backVec + Vector3.new(0, 50, 0)
+	end
+
+	-- Set safe position
+	nullPlr:PivotTo(CFrame.new(getSafeSpawnPosition()))
 
 	local stareLoop
 	local loop
