@@ -27,12 +27,9 @@ local PlayerGui = Player:WaitForChild("PlayerGui")
 local Camera = workspace.CurrentCamera
 local Character = Player.Character or Player.CharacterAdded:Wait()
 
-local castParams = RaycastParams.new()
-
 Player.CharacterAdded:Connect(function(char)
 	Character = char or Player.Character
 	Camera = workspace.CurrentCamera
-	castParams.FilterDescendantsInstances = { Character }
 end) 
 
 --|| SOUNDS ||--
@@ -158,16 +155,12 @@ local YouWill = Instance.new("Sound", SoundService); do
 end
 
 local function Null(plr)
-	local Radius = 100
-	
-	local cast
-	local loop = RunService.RenderStepped:Connect(function()
-		cast = workspace:Raycast(Camera.CFrame.Position, Camera.CFrame.LookVector * 1500, castParams)
-	end)
+	local Radius = 200
 
 	plr.Character.Archivable = true
 	local nullPlr = plr.Character:Clone(); do
-		nullPlr.Name = "PlayerIsmissingUserID"
+		nullPlr.Name = "PlayerIsmissingUserId"
+		nullPlr.Humanoid.DisplayName = "PlayerIsmissingUserId"
 		nullPlr.Parent = workspace
 		nullPlr.PrimaryPart = nullPlr.HumanoidRootPart
 	end -- Here I am.
@@ -187,6 +180,8 @@ local function Null(plr)
 		hl.Parent = nullPlr
 	end
 
+	local Center = workspace.CurrentCamera.ViewportSize / 2
+
 	Debris:AddItem(nullPlr, 120)
 
 	local Character = plr.Character
@@ -198,38 +193,47 @@ local function Null(plr)
 	local Z = HRP.Position.Z + math.sin(angle) * Radius
 	
 	nullPlr:SetPrimaryPartCFrame(CFrame.new(Vector3.new(X, Y, Z)))
-	local works = cast and cast.Instance and (cast.Instance == nullPlr.PrimaryPart or cast.Instance == nullPlr.Head)
-	if works then
-		loop:Disconnect()
-		if math.random() >= 0.05 then
-			nullPlr:Destroy()
-			Glitch:Play()
 
-			warn("            =)")
-		else
-			warn("I see you")
+	local loop = RunService.RenderStepped:Connect(function()
+		local Point, onScreen = workspace.CurrentCamera:WorldToViewportPoint(nullPlr.PrimaryPart.Position)
+
+		if onScreen then
+			local d = Vector2.new(Point.X, Point.Y) - Center.Magnitude
+			local r = 100
+
+			if d <= r then
+				loop:Disconnect()
+				if math.random() >= 0.25 then
+					nullPlr:Destroy()
+					Glitch:Play()
+
+					warn("            =)")
+				else
+					warn("I see you")
 			
-			SFGui.Enabled = true
+					SFGui.Enabled = true
 
-			nullPlr:Destroy()
+					nullPlr:Destroy()
 			
-			Glitch:Play()
+					Glitch:Play()
 
-			task.wait(0.75)
-			SFGui.Enabled = false
+					task.wait(0.75)
+					SFGui.Enabled = false
 
-			Character.Humanoid.Health = 0
-			NullKill:Play() 
-			YouWill:Play()
+					Character.Humanoid.Health = 0
+					NullKill:Play() 
+					YouWill:Play()
 
-			for _, v in ipairs(Character:GetDescendants()) do
-				if v:IsA("BasePart") then
-					v.CanCollide = false
-					v.AssemblyLinearVelocity = Vector3.new( math.random(-100, 100), 200, math.random(-100, 100) )
+					for _, v in ipairs(Character:GetDescendants()) do
+						if v:IsA("BasePart") then
+							v.CanCollide = false
+							v.AssemblyLinearVelocity = Vector3.new( math.random(-100, 100), 200, math.random(-100, 100) )
+						end
+					end
 				end
 			end
 		end
-	end
+	end)
 end
 
 if null then 
