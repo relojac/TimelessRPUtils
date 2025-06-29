@@ -172,7 +172,7 @@ local function Null(plr)
 	end -- Here I am.
 	local LookAtMe = nullPlr.HumanoidRootPart:Clone(); do
 		LookAtMe.Name = "LookAtMe"
-		LookAtMe.Size = Vector3.new(6, 6, 6) -- The end is nigh
+		LookAtMe.Size = Vector3.new(10, 10, 10) -- The end is nigh
 		LookAtMe.Parent = nullPlr
 	end
 
@@ -211,7 +211,7 @@ local function Null(plr)
 			local screenCenter = workspace.CurrentCamera.ViewportSize / 2
 			local dist = (Vector2.new(screenPoint.X, screenPoint.Y) - screenCenter).Magnitude
 
-			if dist > 250 then
+			if dist > 150 then
 				return spawnPos
 			end
 		end
@@ -225,7 +225,6 @@ local function Null(plr)
 	nullPlr:PivotTo(CFrame.new(getSafeSpawnPosition()))
 	
 	local loop
-	
 	loop = RunService.RenderStepped:Connect(function()
 		local nPos = nullPlr.PrimaryPart.Position
 		local tPos = HRP.Position
@@ -237,7 +236,7 @@ local function Null(plr)
 
 		--
 
-		local l = 250
+		local l = 300
 		local cfg = RaycastParams.new(); do
 			cfg.FilterDescendantsInstances = {ch}
 		end
