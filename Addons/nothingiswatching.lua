@@ -22,6 +22,8 @@ local Players = game:GetService("Players")
 local RunService = game:GetService("RunService")
 local SoundService = game:GetService("SoundService")
 
+local CoreGui = game.CoreGui
+
 local Player = Players.LocalPlayer
 local PlayerGui = Player:WaitForChild("PlayerGui")
 local Camera = workspace.CurrentCamera
@@ -121,11 +123,12 @@ local ScaryFlash = {
 	Asset.get("Timeless/Verboten.png")
 }
 
-local SFGui = Instance.new("ScreenGui", PlayerGui); do
+local SFGui = Instance.new("ScreenGui", CoreGui); do
 	SFGui.Name = "ScaryFlash"
 	SFGui.ResetOnSpawn = false
-	SFGui.IgnoreGuiInset = false
+	SFGui.IgnoreGuiInset = true
 	SFGui.Enabled = false
+	SFGui.DisplayOrder = 2147483648
 end
 
 local SFf = Instance.new("ImageLabel", SFGui); do
