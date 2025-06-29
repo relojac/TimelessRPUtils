@@ -352,10 +352,10 @@ local function Null(plr)
 			end
 		end
 	end)
-	local ca
-	ca = plr.CharacterAdded:Connect(function()
+	local died
+	died = plr.Character.Humanoid.Died:Connect(function()
 		loop:Disconnect() 
-		ca:Disconnect()
+		died:Disconnect()
 	end)
 end
 
