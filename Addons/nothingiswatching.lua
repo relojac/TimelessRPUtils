@@ -334,7 +334,6 @@ local function Null(plr)
 
 				for _, v in ipairs(ch:GetDescendants()) do
 					if v:IsA("BasePart") then
-						v:SetNetworkOwner(plr)
 						v.CanCollide = false
 						v.AssemblyLinearVelocity = Vector3.new(math.random(-100, 100), 200, math.random(-100, 100))
 					end
