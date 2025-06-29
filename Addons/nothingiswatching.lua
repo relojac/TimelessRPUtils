@@ -106,25 +106,11 @@ end
 
 --|| SHOVING ||--
 
-local function shove()
-	loadstring(Shove)()
-	task.wait(math.random(0.5, 0.8))
-
-	loadstring(Shove)()
-	task.wait(math.random(0.5, 0.8))
-
-	loadstring(Shove)()
-	task.wait(math.random(0.5, 0.8))
-
-	loadstring(Shove)()
-	task.wait(math.random(0.5, 0.8))
-end
-
 if Shoving then
 	task.spawn(function()
 		while true do
 			task.wait(math.random(30, 120))
-			shove()
+			loadstring(Shove)() 
 		end
 	end)
 end
@@ -246,7 +232,7 @@ end
 if null then 
 	task.spawn(function()
 		while true do
-			task.wait(5)
+			task.wait(5) -- Hello this cooldown is a placeholder it'll be random later I think maybe if I don't forget or something idk Don't Forget deltarune reference okay
 			Null(Player)
 		end
 	end)
