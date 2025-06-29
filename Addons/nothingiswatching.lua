@@ -11,6 +11,8 @@ local Shoving = Settings.Shoving
 local null = Settings.null
 local LockFirstPerson = Settings.LockFirstPerson
 
+local AssetTable = genv.AssetTable
+
 local Shove = game:HttpGet("https://github.com/relojac/TimelessRPUtils/raw/refs/heads/main/Core/RandomShit/Shove.lua")
 
 
@@ -30,14 +32,9 @@ Player.CharacterAdded:Connect(function(char)
 	Camera = workspace.CurrentCamera
 end) 
 
-local DisplayName = Player.DisplayName
-local ReversedDN = string.reverse(DisplayName)
-
 local castParams = RaycastParams.new(); do
 	castParams.FilterDescendantsInstances = { Character }
 end
-
-local cast = workspace:Raycast(Camera.CFrame.Position, Camera.CFrame.LookVector * 1000, castParams)
 
 --|| SOUNDS ||--
 
@@ -133,18 +130,64 @@ if Shoving then
 	end)
 end
 
+--|| ScaryFlash UI ||--
+
+local ScaryFlash = {
+	Asset.get("Timeless/Charts.png"),
+	Asset.get("Timeless/Letter.png"),
+	Asset.get("Timeless/Omniscience.png"),
+	Asset.get("Timeless/Positioner.png"),
+	Asset.get("Timeless/Sky.png"),
+	Asset.get("Timeless/Verboten.png")
+}
+
+local SFGui = Instance.new("ScreenGui", PlayerGui); do
+	SFGui.Name = "ScaryFlash"
+	SFGui.ResetOnSpawn = false
+	SFGui.IgnoreGuiInset = false
+	SFGui.Enabled = false
+end
+
+local SFf = Instance.new("ImageLabel", SFGui); do
+	SFf.Name = "SFImage"
+	SFf.Position = UDim2.new(0, 0, 0, 0)
+	SFf.Size = UDim2.fromScale(1, 1)
+	SFf.BackgroundTransparency = 1
+	SFf.Image = ScaryFlash[math.random(1, #ScaryFlash)]
+end
+
 --|| null ||--
 
-local function phantom(plr)
-	local Radius = 75
+local Jumpscare1 = Asset.get("Timeless/Jumpscare1.ogg")
+local NullKill = Instance.new("Sound", SoundService); do
+	NullKill.Name = "NullKill"
+	NullKill.Volume = 1.25
+	NullKill.SoundId = Jumpscare1
+end
+
+local OneOfUs = Asset.get("Timeless/ONE_OF_US.ogg")
+local YouWill = Instance.new("Sound", SoundService); do
+	YouWill.Name = "YOU WILL BECOME ONE OF US"
+	YouWill.Volume = 2
+	YouWill.SoundId = OneOfUs
+end
+
+local function Null(plr)
+	local Radius = 100
+	
+	local cast
+	local loop = RunService.RenderStepped:Connect(function()
+		cast = workspace:Raycast(Camera.CFrame.Position, Camera.CFrame.LookVector * 1500, castParams)
+	end)
 
 	plr.Character.Archivable = true
-	local Ghost = plr.Character:Clone(); do
-		Ghost.Name = ReversedDN
-		Ghost.Parent = workspace
-	end
+	local nullPlr = plr.Character:Clone(); do
+		nullPlr.Name = "PlayerIsmissingUserID"
+		nullPlr.Parent = workspace
+		nullPlr.PrimaryPart = nullPlr.HumanoidRootPart
+	end -- Here I am.
 
-	for _, obj in ipairs(Ghost:GetDescendants()) do
+	for _, obj in ipairs(nullPlr:GetDescendants()) do
 		if obj:IsA("BasePart") then
 			obj.Anchored = true
 			obj.CanCollide = false
@@ -156,50 +199,56 @@ local function phantom(plr)
 		hl.FillTransparency = 0
 		hl.FillColor = Color3.new(0, 0, 0)
 		hl.DepthMode = Enum.HighlightDepthMode.Occluded
-		hl.Parent = Ghost
+		hl.Parent = nullPlr
 	end
 
-	Debris:AddItem(Ghost, 120)
+	Debris:AddItem(nullPlr, 120)
 
 	local Character = plr.Character
 	local HRP = Character:WaitForChild("HumanoidRootPart")
 
-	local a, b
-	if math.random() == 0 then
-		a = -1
-	else
-		a = 1
-	end
-	if math.random() == 0 then
-		b = -1
-	else
-		b = 1
-	end
-	
-	local X = HRP.Position.X + Radius * a
+	local angle = math.random() * 2 * math.pi
+	local X = HRP.Position.X + math.cos(angle) * Radius
 	local Y = HRP.Position.Y + 50
-	local Z = HRP.Position.Z + Radius * b
+	local Z = HRP.Position.Z + math.sin(angle) * Radius
 	
-	Ghost:SetPrimaryPartCFrame(CFrame.new(Vector3.new(X, Y, Z)))
-	Ghost.PrimaryPart.Touched:Connect(function(hit)
-		local ch = hit:FindFirstAncestorOfClass("Model")
-		if ch then
-			local Pl = Players:GetPlayerFromCharacter(ch)
-			if Pl and Pl.Name == plr.Name then
-				warn("=)")
+	nullPlr:SetPrimaryPartCFrame(CFrame.new(Vector3.new(X, Y, Z)))
+	if cast and cast.Instance and cast.Instance == nullPlr.PrimaryPart then
+		loop:Disconnect()
+		if math.random() >= 0.05 then
+			nullPlr:Destroy()
+			Glitch:Play()
 
-				Glitch:Play()
-				Ghost:Destroy()
+			warn("            =)")
+		else
+			SFGui.Enabled = true
+
+			nullPlr:Destroy()
+			
+			Glitch:Play()
+
+			task.wait(0.75)
+			SFGui.Enabled = false
+
+			Character.Humanoid.Health = 0
+			NullKill:Play() 
+			YouWill:Play()
+
+			for _, v in ipairs(Character:GetDescendants()) do
+				if v:IsA("BasePart") then
+					v.CanCollide = false
+					v.AssemblyLinearVelocity = Vector3.new( math.random(-100, 100), 200, math.random(-100, 100) )
+				end
 			end
 		end
-	end)
+	end
 end
 
 if null then 
 	task.spawn(function()
 		while true do
 			task.wait(5)
-			phantom(Player)
+			Null(Player)
 		end
 	end)
 end
