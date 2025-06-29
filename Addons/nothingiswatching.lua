@@ -211,7 +211,7 @@ local function Null(plr)
 
 		if onScreen then
 			local d = (Vector2.new(Point.X, Point.Y) - Center).Magnitude
-			local r = 50
+			local r = 20
 
 			if d <= r then
 				stareLoop:Disconnect()
@@ -222,13 +222,14 @@ local function Null(plr)
 
 					warn("            =)")
 				else
+					SFf.Image = ScaryFlash[math.random(1, #ScaryFlash)]
 					warn("You will become one of us.")
 
 					nullPlr:Destroy()
 
 					task.spawn(function()
 						SFGui.Enabled = true
-						task.wait(0.1)
+						task.wait(0.5)
 						SFGui.Enabled = false
 					end) 
 
@@ -239,6 +240,7 @@ local function Null(plr)
 						plr.CameraMode = Enum.CameraMode.Classic
 						plr.CameraMinZoomDistance = 10
 						plr.CameraMaxZoomDistance = 10
+						task.wait()
 						Character.Humanoid.Health = 0
 
 						task.wait(Players.RespawnTime)
@@ -253,7 +255,7 @@ local function Null(plr)
 					for _, v in ipairs(Character:GetDescendants()) do
 						if v:IsA("BasePart") then
 							v.CanCollide = false
-							v.AssemblyLinearVelocity = Vector3.new( math.random(-100, 100), 200, math.random(-100, 100) )
+							v.AssemblyLinearVelocity = Vector3.new( math.random(100, 200), 200, math.random(100, 200) )
 						end
 					end
 				end
