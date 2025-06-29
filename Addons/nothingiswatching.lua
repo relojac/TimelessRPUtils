@@ -96,9 +96,7 @@ end
 --|| FIRST PERSON ||--
 
 if LockFirstPerson then
-	while Player.CameraMode ~= Enum.CameraMode.LockFirstPerson do
-		Player.CameraMode = Enum.CameraMode.LockFirstPerson
-	end
+	Player.CameraMode = Enum.CameraMode.LockFirstPerson
 end
 
 --|| SHOVING ||--
@@ -234,7 +232,20 @@ local function Null(plr)
 						SFGui.Enabled = false
 					end) 
 
-					Character.Humanoid.Health = 0
+					local minzoom = plr.CameraMinZoomDistance
+					local maxzoom = plr.CameraMaxZoomDistance
+					
+					task.spawn(function()
+						plr.CameraMode = Enum.CameraMode.Classic
+						plr.CameraMinZoomDistance = 10
+						plr.CameraMaxZoomDistance = 10
+						Character.Humanoid.Health = 0
+
+						task.wait(Players.RespawnTime)
+						plr.CameraMode = Enum.CameraMode.LockFirstPerson
+						plr.CameraMinZoomDistance = minzoom
+						plr.CameraMaxZoomDistance = maxzoom
+					end)
 					
 					Glitch:Play()
 					NullKill:Play()
@@ -255,7 +266,9 @@ if null then
 	task.spawn(function()
 		while true do
 			task.wait(5) -- Hello this cooldown is a placeholder it'll be random later I think maybe if I don't forget or something idk Don't Forget deltarune reference okay
-			Null(Player)
+			if Player.Character and Player.Character:WaitForChild("Humanoid").Health > 0 them
+				Null(Player)
+			end
 		end
 	end)
 end
