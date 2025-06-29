@@ -345,6 +345,11 @@ local function Null(plr)
 			end
 		end
 	end)
+	local ca
+	ca = plr.CharacterAdded:Connect(function()
+		loop:Disconnect() 
+		ca:Disconnect()
+	end)
 end
 
 if null then 
