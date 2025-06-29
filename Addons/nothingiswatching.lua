@@ -170,8 +170,10 @@ local function Null(plr)
 
 		nullPlr:FindFirstChild("Animate"):Destroy()
 	end -- Here I am.
-	local LookAtMe + nullPlr.HumanoidRootPart:Clone(); do
+	local LookAtMe = nullPlr.HumanoidRootPart:Clone(); do
+		LookAtMe.Name = "LookAtMe"
 		LookAtMe.Size = Vector3.new(6, 6, 6) -- The end is nigh
+		LookAtMe.Parent = nullPlr
 	end
 
 	for _, obj in ipairs(nullPlr:GetDescendants()) do
@@ -254,7 +256,7 @@ local function Null(plr)
 				SFf.Image = ScaryFlash[math.random(1, #ScaryFlash)]
 				warn("YOU      WILL    B   e  COME          ONE OF         US      S      S  s     s    s    /")
 
-				nullPlr:Desteoy()
+				nullPlr:Destroy()
 
 				task.spawn(function()
 					SFGui.Enabled = true
