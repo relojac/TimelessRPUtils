@@ -38,10 +38,8 @@ end)
 
 local amb = Color3.new(0.5, 0.5, 0.5)
 if Nostalgia then
-	for _, v in ipairs(Lighting:GetDescendants()) do
-		if v:IsA("PostEffect") or v:IsA("Sky") or v:IsA("Atmosphere") then
-			v:Destroy()
-		end
+	for _, v in ipairs(Lighting:GetChildren()) do
+		v:Destroy()
 	end
 	
 	Lighting.GlobalShadows = false
