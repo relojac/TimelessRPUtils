@@ -10,6 +10,7 @@ local CRTEffect = Settings.CRTEffect
 local Shoving = Settings.Shoving
 local null = Settings.null
 local LockFirstPerson = Settings.LockFirstPerson
+local Nostalgia = Settings.Nostalgia
 
 local AssetTable = genv.AssetTable
 
