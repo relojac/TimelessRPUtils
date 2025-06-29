@@ -158,6 +158,7 @@ end
 local function Null(plr)
 	local ch = plr.Character or plr.CharacterAdded:Wait()
 	local HRP = ch:WaitForChild("HumanoidRootPart")
+	local cam = workspace.CurrentCamera
 	
 	local Radius = 125
 
@@ -170,6 +171,9 @@ local function Null(plr)
 
 		nullPlr:FindFirstChild("Animate"):Destroy()
 	end -- Here I am.
+	local LookAtMe + nullPlr.HumanoidRootPart:Clone(); do
+		LookAtMe.Size = Vector3.new(6, 6, 6) -- The end is nigh
+	end
 
 	for _, obj in ipairs(nullPlr:GetDescendants()) do
 		if obj:IsA("BasePart") then
@@ -185,8 +189,6 @@ local function Null(plr)
 		hl.DepthMode = Enum.HighlightDepthMode.Occluded
 		hl.Parent = nullPlr
 	end
-
-	local Center = workspace.CurrentCamera.ViewportSize / 2
 
 	Debris:AddItem(nullPlr, 60)
 
@@ -220,11 +222,10 @@ local function Null(plr)
 
 	-- Set safe position
 	nullPlr:PivotTo(CFrame.new(getSafeSpawnPosition()))
-
-	local stareLoop
+	
 	local loop
 	
-	stareLoop = RunService.RenderStepped:Connect(function()
+	loop = RunService.RenderStepped:Connect(function()
 		local nPos = nullPlr.PrimaryPart.Position
 		local tPos = HRP.Position
 
@@ -232,80 +233,64 @@ local function Null(plr)
 		local newCF = CFrame.new(nPos, modTPos)
 
 		nullPlr:PivotTo(newCF)
-	end) 
-	loop = RunService.RenderStepped:Connect(function()
-		local Point, onScreen = workspace.CurrentCamera:WorldToViewportPoint(nullPlr.PrimaryPart.Position)
 
-		if onScreen then
-			local d = (Vector2.new(Point.X, Point.Y) - Center).Magnitude
-			local r = 40
+		--
 
-			if d <= r then
-				--|| RAYCAST CHECK FIRST
-				local origin = workspace.CurrentCamera.CFrame.Position
-				local direction = (nullPlr.PrimaryPart.Position - origin).Unit * 1000
-				local rayParams = RaycastParams.new(); do
-					rayParams.FilterDescendantsInstances = {ch}
-					rayParams.FilterType = Enum.RaycastFilterType.Blacklist
-				end
+		local l = 250
+		local cfg = RaycastParams.new(); do
+			cfg.FilterDescendantsInstances = {ch}
+		end
 
-				local result = workspace:Raycast(origin, direction, rayParams)
+		local cast = workspace:Raycast(cam.CFrame.Position, cam.CFrame.LookVector * l, cfg) 
 
-				if result and not nullPlr:IsAncestorOf(result.Instance) then
-					-- Something else is in the way of the Player's view.
-					return
-				end
+		if cast and cast.Instance and cast.Instance == LookAtMe then
+			loop:Disconnect()
 
-				-- There's no obstruction, so continue
-				stareLoop:Disconnect()
-				loop:Disconnect()
-			
-				if math.random() >= 0.25 then
-					nullPlr:Destroy()
-					Glitch:Play()
+			if math.random() >= 0.3 then
+				nullPlr:Destroy()
+				Glitch:Play()
 
-					warn("            =)")
-				else
-					SFf.Image = ScaryFlash[math.random(1, #ScaryFlash)]
-					warn("You will become one of us.")
+				warn("                     =)")
+			else
+				SFf.Image = ScaryFlash[math.random(1, #ScaryFlash)]
+				warn("YOU      WILL    B   e  COME          ONE OF         US      S      S  s     s    s    /")
 
-					nullPlr:Destroy()
+				nullPlr:Desteoy()
 
-					task.spawn(function()
-						SFGui.Enabled = true
-						task.wait(0.5)
-						SFGui.Enabled = false
-					end) 
+				task.spawn(function()
+					SFGui.Enabled = true
+					task.wait(0.25)
+					SFGui.Enabled = false
+				end) 
 
-					local minzoom = plr.CameraMinZoomDistance
-					local maxzoom = plr.CameraMaxZoomDistance
+				local minzoom = plr.CameraMinZoomDistance
+				local maxzoom = plr.CameraMaxZoomDistance
 				
-					task.spawn(function()
-						plr.CameraMode = Enum.CameraMode.Classic
-						plr.CameraMinZoomDistance = 10
-						plr.CameraMaxZoomDistance = 10
-						task.wait()
-						Player.Character:WaitForChild("Humanoid").Health = 0
+				task.spawn(function()
+					plr.CameraMode = Enum.CameraMode.Classic
+					plr.CameraMinZoomDistance = 10
+					plr.CameraMaxZoomDistance = 10
+					task.wait()
+					Player.Character:WaitForChild("Humanoid").Health = 0
 
-						task.wait(Players.RespawnTime)
-						plr.CameraMode = Enum.CameraMode.LockFirstPerson
-						plr.CameraMinZoomDistance = minzoom
-						plr.CameraMaxZoomDistance = maxzoom
-					end)
+					task.wait(Players.RespawnTime)
+					plr.CameraMode = Enum.CameraMode.LockFirstPerson
+					plr.CameraMinZoomDistance = minzoom
+					plr.CameraMaxZoomDistance = maxzoom
+				end)
 
-					Glitch:Play()
-					NullKill:Play()
+				NullKill:Play()
 
-					for _, v in ipairs(ch:GetDescendants()) do
-						if v:IsA("BasePart") then
-							v.CanCollide = false
-							v.AssemblyLinearVelocity = Vector3.new(math.random(100, 200), 200, math.random(100, 200))
-						end
+				for _, v in ipairs(ch:GetDescendants()) do
+					if v:IsA("BasePart") then
+						v.CanCollide = false
+						v.AssemblyLinearVelocity = Vector3.new(math.random(150, 250), 300, math.random(150, 200))
 					end
-					for _, v in ipairs(workspace:GetChildren()) do
-						if v:IsA("Model") and v.Name == "PlayerIsmissingUserId" then
-							v:Destroy()
-						end
+				end
+
+				for _, v in ipairs(workspace:GetChildren())
+					if v:IsA("Model") and v.Name == nullPlr.Name then
+						v:Destroy()
 					end
 				end
 			end
