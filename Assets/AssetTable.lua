@@ -74,6 +74,6 @@ AssetTable.Sky = {
 	"null_plainsky512_rt.jpg",
 	"null_plainsky512_up.jpg",
 
-	"moon.png",
-	"sun.jpg"
+	"Moon.png",
+	"Sun.jpg"
 }
