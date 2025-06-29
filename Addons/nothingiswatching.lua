@@ -188,7 +188,7 @@ local function Null(plr)
 
 	local Center = workspace.CurrentCamera.ViewportSize / 2
 
-	Debris:AddItem(nullPlr, 180)
+	Debris:AddItem(nullPlr, 60)
 
 	local function getSafeSpawnPosition()
 		local attempts = 0
@@ -238,12 +238,12 @@ local function Null(plr)
 
 		if onScreen then
 			local d = (Vector2.new(Point.X, Point.Y) - Center).Magnitude
-			local r = 20
+			local r = 40
 
 			if d <= r then
 				--|| RAYCAST CHECK FIRST
 				local origin = workspace.CurrentCamera.CFrame.Position
-				local direction = (nullPlr.PrimaryPart.Position - origin).Unit * 10000
+				local direction = (nullPlr.PrimaryPart.Position - origin).Unit * 30000
 				local rayParams = RaycastParams.new(); do
 					rayParams.FilterDescendantsInstances = {nullPlr, ch}
 					rayParams.FilterType = Enum.RaycastFilterType.Blacklist
@@ -285,7 +285,7 @@ local function Null(plr)
 						plr.CameraMinZoomDistance = 10
 						plr.CameraMaxZoomDistance = 10
 						task.wait()
-						plr.Character:WaitForChild("Humanoid").Health = 0
+						Player.Character:WaitForChild("Humanoid").Health = 0
 
 						task.wait(Players.RespawnTime)
 						plr.CameraMode = Enum.CameraMode.LockFirstPerson
@@ -300,6 +300,11 @@ local function Null(plr)
 						if v:IsA("BasePart") then
 							v.CanCollide = false
 							v.AssemblyLinearVelocity = Vector3.new(math.random(100, 200), 200, math.random(100, 200))
+						end
+					end
+					for _, v in ipairs(workspace:GetChildren()) do
+						if v:IsA("Model") and v.Name = "PlayerIsmissingUserId" then
+							v:Destroy()
 						end
 					end
 				end
