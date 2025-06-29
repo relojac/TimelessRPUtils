@@ -158,8 +158,10 @@ end
 if Shoving then
 	task.spawn(function()
 		while true do
-			task.wait(math.random(30, 120))
-			loadstring(Shove)() 
+			if Player.Character and Player.Character.Humanoid.Health > 0 then
+				task.wait(math.random(30, 120))
+				loadstring(Shove)() 
+			end
 		end
 	end)
 end
@@ -361,7 +363,7 @@ end
 if null then 
 	task.spawn(function()
 		while true do
-			task.wait(5) -- Hello this cooldown is a placeholder it'll be random later I think maybe if I don't forget or something idk Don't Forget deltarune reference okay
+			task.wait(math.random(3, 10)) -- Hello this cooldown is a placeholder it'll be random later I think maybe if I don't forget or something idk Don't Forget deltarune reference okay
 			if Character and Character:WaitForChild("Humanoid").Health > 0 then
 				Null(Player)
 			end
