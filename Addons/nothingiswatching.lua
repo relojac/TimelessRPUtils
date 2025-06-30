@@ -392,7 +392,7 @@ end
 
 task.spawn(function()
 	while true do
-		task.wait(math.random(60, 240)
+		task.wait(math.random(60, 240))
 		if math.random < 0.8 then
 		end
 	end
