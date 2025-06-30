@@ -20,6 +20,6 @@ for name, entry in pairs(AssetTable) do
 			if AlwaysRedownloadAssets then Asset.del("Timeless/" .. v) end
 		
 			Asset.write("https://github.com/relojac/TimelessRPUtils/raw/refs/heads/main/Assets/"..name.."/"..v.."/", "Timeless/" .. v)
-		end
+		end) 
 	end
 end
