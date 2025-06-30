@@ -14,8 +14,6 @@ local Nostalgia = Settings.Nostalgia
 
 local AssetTable = genv.AssetTable
 
-local Shove = game:HttpGet("https://github.com/relojac/TimelessRPUtils/raw/refs/heads/main/Core/RandomShit/Shove.lua")
-
 
 local Debris = game:GetService("Debris")
 local Lighting = game:GetService("Lighting")
@@ -34,6 +32,10 @@ local Character = Player.Character or Player.CharacterAdded:Wait()
 Player.CharacterAdded:Connect(function(char)
 	Character = char
 	Camera = workspace.CurrentCamera
+
+	if LockFirstPerson then
+		Player.CameraMode = Enum.CameraMode.LockFirstPerson
+	end
 end)
 
 --|| NOSTALGIA ||--
@@ -152,12 +154,34 @@ end
 
 --|| SHOVING ||--
 
+local function shove(plr)
+	local X = math.random(-30, 30)
+	local Y = math.random(5, 20)
+	local Z = math.random(-30, 30)
+
+	local ch = plr.Character
+	local HRP = ch:FindFirstChild("HumanoidRootPart")
+	local Att = HRP:WaitForChild("RootAttachment")
+	local LV = Instance.new("LinearVelocity"); do
+		LV.Name = "FlingForce"
+		LV.MaxForce = math.huge
+		LV.VectorVelocity = Vector3.new(X, Y, Z)
+		LV.Attachment0 = Att
+		LV.Parent = HRP
+	end
+
+	Debris:AddItem(LV, 0.1)
+end
+
+local shoveDel = math.random(30, 120)
 if Shoving then
 	task.spawn(function()
 		while true do
+			print(shoveDel.."s before shove()")
+			task.wait(shoveDel)
+			
 			if Player.Character and Player.Character.Humanoid.Health > 0 then
-				task.wait(math.random(30, 120))
-				loadstring(Shove)() 
+				shove(Player)
 			end
 		end
 	end)
