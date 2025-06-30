@@ -409,11 +409,11 @@ end)
 
 --|| TIME ||--
 
-local TOD = 12
+--[[local TOD = 12
 RunService.RenderStepped:Connect(function()
 	TOD += 0.01
 
 	Lighting.TimeOfDay = TOD
-end)
+end)]] 
 
 --|| RANDOM PARTICLES ||--
