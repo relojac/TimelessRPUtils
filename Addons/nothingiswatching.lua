@@ -265,7 +265,7 @@ local function Null(plr)
 		hl.Parent = nullPlr
 	end
 
-	Debris:AddItem(nullPlr, 60)
+	Debris:AddItem(nullPlr, 120)
 
 	local function getSafeSpawnPosition()
 		local attempts = 0
@@ -385,6 +385,15 @@ local function Null(plr)
 		loop:Disconnect() 
 		died:Disconnect()
 	end)
+
+	task.spawn(function()
+		local destr
+		destr = nullPlr.Destroyed:Connect(function()
+			loop:Disconnect()
+			died:Disconnect() 
+			destr:Disconnect()
+		end)
+	end) 
 end
 
 if null then 
