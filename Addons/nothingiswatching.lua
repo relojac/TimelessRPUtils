@@ -28,7 +28,7 @@ local Terrain = workspace.Terrain
 
 local Player = Players.LocalPlayer
 local PlayerGui = Player:WaitForChild("PlayerGui")
-local Camera = workspace.CurrentCamera
+local Camera = workspace.CurrentCamera or workspace:FindFirstChildWhichIsA("Camera")
 local Character = Player.Character or Player.CharacterAdded:Wait()
 
 Player.CharacterAdded:Connect(function(char)
@@ -38,7 +38,7 @@ end)
 
 --|| NOSTALGIA ||--
 
-local amb = Color3.new(0.5, 0.5, 0.5)
+local amb = Color3.fromRGB(128, 128, 128)
 if Nostalgia then
 	for _, v in ipairs(Lighting:GetChildren()) do
 		v:Destroy()
@@ -88,19 +88,16 @@ end
 
 --|| SOUNDS ||--
 
-local MoonglitchSource = Asset.get("Timeless/Moonglitch.ogg")
-local GlitchSource = Asset.get("Timeless/Glitch.ogg")
-
 local Moonglitch = Instance.new("Sound", SoundService); do
 	Moonglitch.Name = "Moonglitch"
 	Moonglitch.Volume = 1.5
-	Moonglitch.SoundId = MoonglitchSource
+	Moonglitch.SoundId = Asset.get("Timeless/Moonglitch.ogg")
 end
 
 local Glitch = Instance.new("Sound", SoundService); do
 	Glitch.Name = "Glitch"
 	Glitch.Volume = 2
-	Glitch.SoundId = GlitchSource
+	Glitch.SoundId = Asset.get("Timeless/Glitch.ogg")
 end
 
 --|| CRT EFFECT ||--
@@ -182,7 +179,7 @@ local SFGui = Instance.new("ScreenGui", CoreGui); do
 	SFGui.ResetOnSpawn = false
 	SFGui.IgnoreGuiInset = true
 	SFGui.Enabled = false
-	SFGui.DisplayOrder = 2147483648
+	SFGui.DisplayOrder = 2147483647
 end
 
 local SFf = Instance.new("ImageLabel", SFGui); do
@@ -195,18 +192,16 @@ end
 
 --|| null ||--
 
-local Jumpscare1 = Asset.get("Timeless/Jumpscare1.ogg")
 local NullKill = Instance.new("Sound", SoundService); do
 	NullKill.Name = "NullKill"
 	NullKill.Volume = 1.25
-	NullKill.SoundId = Jumpscare1
+	NullKill.SoundId = Asset.get("Timeless/Jumpscare1.ogg")
 end
 
-local OneOfUs = Asset.get("Timeless/ONE_OF_US.ogg")
 local YouWill = Instance.new("Sound", SoundService); do
 	YouWill.Name = "YOU WILL BECOME ONE OF US"
 	YouWill.Volume = 2
-	YouWill.SoundId = OneOfUs
+	YouWill.SoundId = Asset.get("Timeless/ONE_OF_US.ogg")
 end
 
 local function Null(plr)
@@ -214,7 +209,7 @@ local function Null(plr)
 	local HRP = ch:WaitForChild("HumanoidRootPart")
 	local cam = workspace.CurrentCamera
 	
-	local Radius = 125
+	local Radius = math.random(100, 150)
 
 	ch.Archivable = true
 	local nullPlr = ch:Clone(); do
@@ -320,19 +315,21 @@ local function Null(plr)
 
 				local minzoom = plr.CameraMinZoomDistance
 				local maxzoom = plr.CameraMaxZoomDistance
-				
-				task.spawn(function()
-					plr.CameraMode = Enum.CameraMode.Classic
-					plr.CameraMinZoomDistance = 10
-					plr.CameraMaxZoomDistance = 10
-					task.wait()
-					Player.Character:WaitForChild("Humanoid").Health = 0
 
-					task.wait(Players.RespawnTime)
-					plr.CameraMode = Enum.CameraMode.LockFirstPerson
-					plr.CameraMinZoomDistance = minzoom
-					plr.CameraMaxZoomDistance = maxzoom
-				end)
+				if LockFirstPerson then
+					task.spawn(function()
+						plr.CameraMode = Enum.CameraMode.Classic
+						plr.CameraMinZoomDistance = 10
+						plr.CameraMaxZoomDistance = 10
+						task.wait()
+						Player.Character:WaitForChild("Humanoid").Health = 0
+						
+						task.wait(Players.RespawnTime)
+						plr.CameraMode = Enum.CameraMode.LockFirstPerson
+						plr.CameraMinZoomDistance = minzoom
+						plr.CameraMaxZoomDistance = maxzoom
+					end)
+				end
 
 				task.spawn(function()
 					for _, v in ipairs(ch:GetDescendants()) do
