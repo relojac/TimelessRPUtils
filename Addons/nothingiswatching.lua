@@ -429,16 +429,16 @@ end
 local rFog
 task.spawn(function()
 	while true do
-		rFog = math.random(60, 300)
+		rFog = math.random(60, 120)
 		print(rFog.."s until FogEvent RNG")
 			
 		task.wait(rFog)
 		
-		if math.random < 0.8 then
+		if math.random() < 0.5 then
 			FogEvent()
 			warn("Do you see me?")
 		else
-			print("Random event: FogEvent() not initiated; math.random > 0.8")
+			print("Random event: FogEvent() not initiated; math.random > 0.5")
 		end
 	end
 end)
