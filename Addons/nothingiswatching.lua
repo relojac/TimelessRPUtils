@@ -334,14 +334,20 @@ local function Null(plr)
 					plr.CameraMaxZoomDistance = maxzoom
 				end)
 
-				for _, v in ipairs(ch:GetDescendants()) do
-					if v:IsA("BasePart") then
-						v.CanCollide = false
-						v.AssemblyLinearVelocity = Vector3.new(math.random(-100, 100), 200, math.random(-100, 100))
+				task.spawn(function()
+					for _, v in ipairs(ch:GetDescendants()) do
+						task.spawn(function()
+							if v:IsA("BasePart") then
+								v.CanCollide = false
+								v.AssemblyLinearVelocity = Vector3.new(math.random(-100, 100), 200, math.random(-100, 100))
+							end
+						end) 
 					end
-				end
 
-				Player.Character:WaitForChild("Humanoid").Health = 0
+					task.wait(0.05)
+
+					Player.Character:WaitForChild("Humanoid").Health = 0
+				end) 
 
 				NullKill:Play()
 
