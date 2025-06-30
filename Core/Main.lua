@@ -53,10 +53,10 @@ loadstring(game:HttpGet("https://github.com/relojac/TimelessRPUtils/raw/refs/hea
 
 --|| BUTTONS ||--
 
-if Settings.Buttons.Faint.Enabled then loadstring(game:HttpGet("https://raw.githubusercontent.com/relojac/TimelessRPUtils/refs/heads/main/Core/Buttons/Faint.lua"))() end
-if Settings.Buttons.Reset.Enabled then loadstring(game:HttpGet("https://raw.githubusercontent.com/relojac/TimelessRPUtils/refs/heads/main/Core/Buttons/Reset.lua"))() end
-if Settings.Buttons.Sit.Enabled then loadstring(game:HttpGet("https://raw.githubusercontent.com/relojac/TimelessRPUtils/refs/heads/main/Core/Buttons/Sit.lua"))() end
-if Settings.Buttons.Sit.Enabled then loadstring(game:HttpGet("https://raw.githubusercontent.com/relojac/TimelessRPUtils/refs/heads/main/Core/Buttons/Sprint.lua"))() end
+if Settings.Buttons.Faint.Enabled then task.spawn(function() loadstring(game:HttpGet("https://raw.githubusercontent.com/relojac/TimelessRPUtils/refs/heads/main/Core/Buttons/Faint.lua"))() end) end
+if Settings.Buttons.Reset.Enabled then task.spawn(function() loadstring(game:HttpGet("https://raw.githubusercontent.com/relojac/TimelessRPUtils/refs/heads/main/Core/Buttons/Reset.lua"))() end) end
+if Settings.Buttons.Sit.Enabled then task.spawn(function() loadstring(game:HttpGet("https://raw.githubusercontent.com/relojac/TimelessRPUtils/refs/heads/main/Core/Buttons/Sit.lua"))() end) end
+if Settings.Buttons.Sit.Enabled then task.spawn(function() loadstring(game:HttpGet("https://raw.githubusercontent.com/relojac/TimelessRPUtils/refs/heads/main/Core/Buttons/Sprint.lua"))() end) end
 
 --|| ADDONS ||--
 
