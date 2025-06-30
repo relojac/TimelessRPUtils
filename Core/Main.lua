@@ -60,5 +60,7 @@ if Settings.Buttons.Sit.Enabled then task.spawn(function() loadstring(game:HttpG
 
 --|| ADDONS ||--
 
+repeat task.wait() until Settings.Addons
+
 if Settings.Addons.nothingiswatching.Enabled then loadstring(game:HttpGet("https://raw.githubusercontent.com/relojac/TimelessRPUtils/refs/heads/main/Addons/nothingiswatching.lua"))() end
 if Settings.Addons.LimbsFirstPerson then loadstring(game:HttpGet("https://raw.githubusercontent.com/relojac/TimelessRPUtils/refs/heads/main/Addons/LimbsFirstPerson.lua"))() end
