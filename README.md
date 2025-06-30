@@ -26,3 +26,4 @@ you can also delete every Timeless asset from your workspace folder if you've do
 - relojac - programmer, artist
 - [Gelatek Reanimate](https://github.com/Gelatekussy/GelatekReanimate/tree/main) by Gelatek/xyzkade - genuinely helped understand how to load assets from a url
 - [Naming Standard](https://github.com/unified-naming-convention/NamingStandard/tree/main) by ScriptUNC/Unified Naming Convention - a well documented API for Roblox executors. genuinely learned a lot from here (and it's so POWERFUL..!!)
+- [The Broken Script](https://modrinth.com/mod/the-broken-script) by wendigodrip - Nothing is watching.
