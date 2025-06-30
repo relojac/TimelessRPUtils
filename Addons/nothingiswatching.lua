@@ -373,3 +373,16 @@ end
 
 --|| RENDER DISTANCE ||--
 
+local function FogEvent()
+	Lighting.FogColor = Color3.new(0.5, 0.5, 0.5)
+	Lighting.FogStart = 40
+	Lighting.FogEnd = 45
+end
+
+task.spawn(function()
+	while true do
+		task.wait(math.random(60, 240)
+		if math.random < 0.75 then
+		end
+	end
+end
