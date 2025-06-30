@@ -388,7 +388,7 @@ local function Null(plr)
 
 	task.spawn(function()
 		local destr
-		destr = nullPlr.Destroyed:Connect(function()
+		destr = nullPlr.Destroying:Connect(function()
 			loop:Disconnect()
 			died:Disconnect() 
 			destr:Disconnect()
