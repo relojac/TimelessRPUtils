@@ -374,15 +374,26 @@ end
 --|| RENDER DISTANCE ||--
 
 local function FogEvent()
+	local fcol = Lighting.FogColor
+	local fstart, fend = Lighting.FogStart, Lighting.FogEnd
+	
+	Moonglitch:Play() 
+	
 	Lighting.FogColor = Color3.new(0.5, 0.5, 0.5)
 	Lighting.FogStart = 40
 	Lighting.FogEnd = 45
+
+	task.wait(10)
+
+	Lighting.FogColor = fcol
+	Lighting.FogStart = fstart
+	Lighting.FogEnd = fend
 end
 
 task.spawn(function()
 	while true do
 		task.wait(math.random(60, 240)
-		if math.random < 0.75 then
+		if math.random < 0.8 then
 		end
 	end
 end
