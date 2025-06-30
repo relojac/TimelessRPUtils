@@ -16,8 +16,10 @@ local AssetTable = genv.AssetTable
 for name, entry in pairs(AssetTable) do
 	print("access", name, "of AssetTable")
 	for _, v in ipairs(entry) do
-		if AlwaysRedownloadAssets then Asset.del("Timeless/" .. v) end
+		task.spawn(function()
+			if AlwaysRedownloadAssets then Asset.del("Timeless/" .. v) end
 		
-		Asset.write("https://github.com/relojac/TimelessRPUtils/raw/refs/heads/main/Assets/"..name.."/"..v.."/", "Timeless/" .. v)
+			Asset.write("https://github.com/relojac/TimelessRPUtils/raw/refs/heads/main/Assets/"..name.."/"..v.."/", "Timeless/" .. v)
+		end
 	end
 end
