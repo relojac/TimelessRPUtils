@@ -339,7 +339,7 @@ local function Null(plr)
 						task.spawn(function()
 							if v:IsA("BasePart") then
 								v.CanCollide = false
-								v.AssemblyLinearVelocity = Vector3.new(math.random(-100, 100), 200, math.random(-100, 100))
+								v.AssemblyLinearVelocity = Vector3.new(math.random(-150, 150), 250, math.random(-150, 150))
 							end
 						end) 
 					end
@@ -369,7 +369,7 @@ end
 if null then 
 	task.spawn(function()
 		while true do
-			task.wait(math.random(3, 10)) -- Hello this cooldown is a placeholder it'll be random later I think maybe if I don't forget or something idk Don't Forget deltarune reference okay
+			task.wait(math.random(3, 7)) -- Hello this cooldown is a placeholder it'll be random later I think maybe if I don't forget or something idk Don't Forget deltarune reference okay
 			if Character and Character:WaitForChild("Humanoid").Health > 0 then
 				Null(Player)
 			end
@@ -396,9 +396,12 @@ local function FogEvent()
 	Lighting.FogEnd = fend
 end
 
+local rFog
 task.spawn(function()
 	while true do
-		task.wait(math.random(60, 240))
+		rFog = math.random(60, 300)
+		task.wait(rFog)
+		print(rFog.."s until rFog"
 		if math.random < 0.8 then
 			FogEvent()
 		else
