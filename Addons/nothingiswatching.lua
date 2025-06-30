@@ -394,6 +394,9 @@ task.spawn(function()
 	while true do
 		task.wait(math.random(60, 240))
 		if math.random < 0.8 then
+			FogEvent()
+		else
+			print("Random event: FogEvent() not initiated; math.random > 0.8")
 		end
 	end
-end
+end)
