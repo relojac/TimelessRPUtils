@@ -77,3 +77,8 @@ AssetTable.Sky = {
 	"Moon.png",
 	"Sun.jpg"
 }
+
+AssetTable.CoreGui = {
+	"logo.png",
+	"hurtOverlay.png"
+} 
