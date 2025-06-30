@@ -398,7 +398,7 @@ task.spawn(function()
 	while true do
 		rFog = math.random(60, 300)
 		task.wait(rFog)
-		print(rFog.."s until rFog"
+		print(rFog.."s until rFog")
 		if math.random < 0.8 then
 			FogEvent()
 		else
