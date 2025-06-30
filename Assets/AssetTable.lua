@@ -82,3 +82,8 @@ AssetTable.CoreGui = {
 	"logo.png",
 	"hurtOverlay.png"
 } 
+
+AssetTable.Particles = {
+	"eye.png",
+	"devoidingreality.png"
+}
