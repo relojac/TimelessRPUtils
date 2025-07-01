@@ -416,10 +416,10 @@ local function FogEvent()
 	Moonglitch:Play() 
 	
 	Lighting.FogColor = Color3.new(0.5, 0.5, 0.5)
-	Lighting.FogStart = 40
-	Lighting.FogEnd = 45
+	Lighting.FogStart = 15
+	Lighting.FogEnd = 20
 
-	task.wait(10)
+	task.wait(20)
 
 	Lighting.FogColor = fcol
 	Lighting.FogStart = fstart
