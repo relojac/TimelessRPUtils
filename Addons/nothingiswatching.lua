@@ -56,7 +56,7 @@ if Nostalgia then
 	Lighting.ColorShift_Top = amb
 	Lighting.ColorShift_Bottom = amb
 
-	Lighting.Technology = Enum.Technology.Voxel
+	Lighting.Technology = Enum.Technology.Compatibility
 
 	Lighting.EnvironmentSpecularScale = 0
 	Lighting.EnvironmentDiffuseScale = 1
