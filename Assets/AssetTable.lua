@@ -35,7 +35,7 @@ AssetTable.AutoLoadedEffects = {
 
 	"crt.png",
 
-	"No%20way%20out.png"
+	"No%20way%20out.txt"
 }
 
 AssetTable.PsychopathicFlash = {
