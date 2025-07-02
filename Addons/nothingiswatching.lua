@@ -21,6 +21,7 @@ local Players = game:GetService("Players")
 local RunService = game:GetService("RunService")
 local SoundService = game:GetService("SoundService")
 local CoreGui = game:GetService("CoreGui")
+local StarterGui = game:GetService("StarterGui") 
 
 local Terrain = workspace.Terrain
 
@@ -37,6 +38,14 @@ Player.CharacterAdded:Connect(function(char)
 		Player.CameraMode = Enum.CameraMode.LockFirstPerson
 	end
 end)
+
+
+local function badgeNotif(badgeName, badgeImg, creator)
+	StarterGui:SetCore("SendNotification", {
+		Title = "Badge Awarded",
+		Text = Player.Name, "won", creator, [['s "]]..badgeName..[[
+		}) 
+end
 
 --|| NOSTALGIA ||--
 
