@@ -42,9 +42,11 @@ end)
 
 local function badgeNotif(badgeName, badgeImg, creator)
 	StarterGui:SetCore("SendNotification", {
-		Title = "Badge Awarded",
-		Text = Player.Name, "won", creator, [['s "]]..badgeName..[[
-		}) 
+		Title = "Badge Awarded";
+		Text = Player.Name .. " won " .. creator .. [['s "]] .. badgeName .. [[" award!]];
+		Icon = badgeImg;
+		Duration = 5;
+	})
 end
 
 --|| NOSTALGIA ||--
@@ -452,13 +454,14 @@ task.spawn(function()
 	end
 end)
 
---|| TIME ||--
+--|| FAKE BADGE ||--
 
---[[local TOD = 12
-RunService.RenderStepped:Connect(function()
-	TOD += 0.01
-
-	Lighting.TimeOfDay = TOD
-end)]] 
-
---|| RANDOM PARTICLES ||--
+local badge = false
+while not badge do
+	task.wait(math.random(10, 60))
+	
+	if math.random() < 0.05 then
+		badge = true
+		badgeNotif("", Asset.get("Timeless/badge.png"), "null")
+	end
+end
