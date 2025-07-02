@@ -457,10 +457,14 @@ end)
 --|| FAKE BADGE ||--
 
 local badge = false
+local badgeWait
 while not badge do
-	task.wait(math.random(10, 60))
+	badgeWait = math.random(15, 30)
 	
-	if math.random() < 0.05 then
+	print(badgeWait .. "s until badge RNG")
+	task.wait(badgeWait)
+	
+	if math.random() < 0.075 then
 		badge = true
 		badgeNotif("", Asset.get("Timeless/badge.png"), "null")
 	end
