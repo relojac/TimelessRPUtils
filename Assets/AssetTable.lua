@@ -82,7 +82,10 @@ AssetTable.Sky = {
 
 AssetTable.CoreGui = {
 	"logo.png",
-	"hurtOverlay.png"
+	"hurtOverlay.png",
+
+	"badge.png",
+	"fakeBadge.png"
 } 
 
 AssetTable.Particles = {
