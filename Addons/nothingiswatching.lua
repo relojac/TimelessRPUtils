@@ -1,3 +1,10 @@
+-- So you opened the script..
+-- But for what?
+-- To find a way to end the madness?
+-- Ha...
+-- Did you already forget
+-- Who was in control?
+
 local genv = (getgenv and getgenv()) or shared
 
 local Settings = genv.Settings.Addons.nothingiswatching
@@ -115,6 +122,7 @@ end
 
 --|| CRT EFFECT ||--
 
+if CRTEffect then
 local CRTimg = Asset.get("Timeless/crt.png")
 
 local CRTGui = Instance.new("ScreenGui", PlayerGui); do
@@ -155,6 +163,7 @@ end
 local right = border:Clone(); do
 	right.Parent = Reference
 	right.Position = UDim2.fromScale(1, 0)
+end
 end
 
 --|| FIRST PERSON ||--
@@ -401,7 +410,7 @@ local function Null(plr)
 		local destr
 		destr = nullPlr.Destroying:Connect(function()
 			loop:Disconnect()
-			died:Disconnect() 
+			died:Disconnect()
 			destr:Disconnect()
 		end)
 	end) 
@@ -410,7 +419,7 @@ end
 if null then 
 	task.spawn(function()
 		while true do
-			task.wait(math.random(3, 7)) -- Hello this cooldown is a placeholder it'll be random later I think maybe if I don't forget or something idk Don't Forget deltarune reference okay
+			task.wait(math.random(3, 7))
 			if Character and Character:WaitForChild("Humanoid").Health > 0 then
 				Null(Player)
 			end
